@@ -14,13 +14,21 @@
 
         mode = canvas.dataset.evalMode || 'streaming';
         const ctx = canvas.getContext('2d');
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
         const W = 960;
         const H = 360;
 
-        canvas.width = W * dpr;
-        canvas.height = H * dpr;
-        ctx.scale(dpr, dpr);
+        function resizeCanvas() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const rect = canvas.getBoundingClientRect();
+            const renderWidth = rect.width || W;
+            const renderHeight = rect.height || (renderWidth * H / W);
+
+            canvas.width = Math.round(renderWidth * dpr);
+            canvas.height = Math.round(renderHeight * dpr);
+            ctx.setTransform(canvas.width / W, 0, 0, canvas.height / H, 0, 0);
+        }
+
+        resizeCanvas();
 
         const ML = 56, MR = 56;
         const TL = ML;
@@ -1051,6 +1059,7 @@
             mode === 'streaming' ? drawStreaming(t) : drawRetrospective(t);
             animationFrame = requestAnimationFrame(tick);
         }
+        window.addEventListener('resize', resizeCanvas);
         window.addEventListener('beforeunload', () => { if (animationFrame) cancelAnimationFrame(animationFrame); });
         animationFrame = requestAnimationFrame(tick);
     }

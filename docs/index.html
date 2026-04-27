@@ -9,9 +9,9 @@
     <meta property="og:description" content="Don't Pause! Every prediction matters in a streaming video" />
     <meta property="og:url" content="https://dibschat.github.io/SPOT-Bench" />
 
-    <meta property="og:image" content="static/image/your_banner_image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="https://dibschat.github.io/SPOT-Bench/assets/images/retroQA.png" />
+    <meta property="og:image:width" content="2112" />
+    <meta property="og:image:height" content="1290" />
 
     <meta name="keywords"
         content="Streaming Videos, VideoLLMs, Multimodal Large Language Models, Video Question Answering, Online VideoQA, Proactive Queries, Real-time Assistance, SPOT-Bench">
@@ -39,10 +39,13 @@
                     <div class="column is-max-desktop has-text-centered">
                         <h1 class="title is-2 publication-title" style="margin-bottom:0rem">
                             <strong>
-                                <span class="hero-mode-shell">
-                                    <button class="hero-mode-button streaming" onclick="toggleMode()"><span
-                                            class="hero-mode-icon">&#9654;&#xFE0E;</span><span class="hero-mode-label">
-                                            Don't Pause!</span></button>
+                                <span class="hero-mode-shell streaming-mode">
+                                    <button class="hero-mode-button action-pause" onclick="toggleMode()">
+                                        <span class="hero-mode-icon">⏸︎</span>
+                                    </button>
+                                    <span class="hero-mode-label-slot">
+                                        <span class="hero-mode-label">Don't Pause</span>
+                                    </span>
                                 </span>
                                 <span class="page-title-rest">Every prediction matters in a streaming video</span>
                             </strong>
@@ -165,15 +168,16 @@
         </div>
     </section>
 
-    <!-- Query-type animation section (after evaluation) -->
     <section class="section hero shared-eval-section">
         <div class="eval-canvas-outer">
             <h2 class="title is-3 has-text-centered" id="query-section-title">Proactive QA</h2>
             <div class="shared-eval-card">
                 <div class="shared-eval-canvas-wrap">
-                    <canvas id="spot-query-canvas" class="shared-eval-canvas query-viz-canvas"
-                        data-query-mode="proactive"
-                        aria-label="Animated illustration of retrospective and proactive query types"></canvas>
+                    <video id="spot-query-video" class="shared-eval-canvas query-loop-video" autoplay muted loop
+                        playsinline preload="auto" disablepictureinpicture tabindex="-1"
+                        aria-label="Looping illustration of retrospective and proactive query types">
+                        <source src="assets/images/pro.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
@@ -183,10 +187,9 @@
         <section class="section hero benchmark-section">
             <div class="eval-canvas-outer benchmark-outer">
                 <div class="has-text-centered">
-                    <h2 class="title is-3">Three Streaming Benchmarks</h2>
+                    <h2 class="title is-3">SPOT-Bench: Streaming Perception Over Time Benchmark</h2>
                     <p class="benchmark-intro">
-                        SPOT-Bench evaluates always-on video models across complementary streaming skills:
-                        noticing events, conversing at the right time, and intervening when action matters.
+                        SPOT-Bench features six proactive streaming tasks grouped into three broad categories.
                     </p>
 
                     <div class="benchmark-tabs" role="tablist" aria-label="SPOT-Bench benchmark categories">
@@ -209,106 +212,107 @@
                 </div>
 
                 <div class="benchmark-slide benchmark-detection active" id="benchmark-detection">
-                    <div class="benchmark-card">
-                        <div class="benchmark-copy">
-                            <p class="benchmark-kicker">Benchmark 1</p>
+                    <div class="benchmark-card benchmark-card-featured">
+                        <div class="benchmark-copy benchmark-copy-featured">
                             <h3 class="title is-4">Detection</h3>
                             <p class="benchmark-description">
-                                Detection focuses on whether a streaming model can identify target events as they
-                                unfold, without waiting for the video to be paused.
+                                Detection evaluates a model's general event perception in a streaming setting: can it
+                                identify the exact moment an event occurs or transitions, given only partial
+                                observations up to that point?
                             </p>
-                            <div class="benchmark-tasks">
-                                <div class="benchmark-task">
-                                    <span class="benchmark-task-label">Task 1</span>
-                                    <strong>Detection Task A</strong>
-                                    <p>Placeholder for the first detection task.</p>
-                                </div>
-                                <div class="benchmark-task">
-                                    <span class="benchmark-task-label">Task 2</span>
-                                    <strong>Detection Task B</strong>
-                                    <p>Placeholder for the second detection task.</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="benchmark-visuals" aria-label="Task placeholders for the Detection benchmark">
-                            <div class="benchmark-placeholder benchmark-placeholder-task1">
-                                <span>Detection Task A placeholder</span>
-                            </div>
-                            <div class="benchmark-placeholder benchmark-placeholder-task2">
-                                <span>Detection Task B placeholder</span>
-                            </div>
+                        <div class="benchmark-task-grid" aria-label="Detection tasks">
+                            <article class="benchmark-task benchmark-task-showcase">
+                                <strong>Action Boundary Detection (ABD)</strong>
+                                <p>Respond only when the queried action boundary begins or ends.</p>
+                                <div
+                                    class="benchmark-placeholder benchmark-placeholder-task1 benchmark-placeholder-image">
+                                    <img src="assets/images/ABD.png" alt="Illustration for Action Boundary Detection"
+                                        class="benchmark-visual-image" loading="lazy">
+                                </div>
+                            </article>
+                            <article class="benchmark-task benchmark-task-showcase">
+                                <strong>Point-of-No-Return Detection (PNR)</strong>
+                                <p>Respond only when the queried visual state change occurs.</p>
+                                <div
+                                    class="benchmark-placeholder benchmark-placeholder-task2 benchmark-placeholder-image">
+                                    <img src="assets/images/PNR.png" alt="Illustration for Point-of-No-Return Detection"
+                                        class="benchmark-visual-image" loading="lazy">
+                                </div>
+                            </article>
                         </div>
                     </div>
                 </div>
 
                 <div class="benchmark-slide benchmark-interaction" id="benchmark-interaction">
-                    <div class="benchmark-card">
-                        <div class="benchmark-copy">
-                            <p class="benchmark-kicker">Benchmark 2</p>
+                    <div class="benchmark-card benchmark-card-featured">
+                        <div class="benchmark-copy benchmark-copy-featured">
                             <h3 class="title is-4">Interaction</h3>
                             <p class="benchmark-description">
-                                Interaction evaluates multi-turn proactive queries, where the model must respond
-                                at the right moment while the video stream continues.
+                                Interaction evaluates a model’s ability to engage in streaming interactions, producing
+                                temporally grounded and context-aware responses.
                             </p>
-                            <div class="benchmark-tasks">
-                                <div class="benchmark-task">
-                                    <span class="benchmark-task-label">Task 1</span>
-                                    <strong>Interaction Task A</strong>
-                                    <p>Placeholder for the first interaction task.</p>
-                                </div>
-                                <div class="benchmark-task">
-                                    <span class="benchmark-task-label">Task 2</span>
-                                    <strong>Interaction Task B</strong>
-                                    <p>Placeholder for the second interaction task.</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="benchmark-visuals" aria-label="Task placeholders for the Interaction benchmark">
-                            <div class="benchmark-placeholder benchmark-placeholder-task1">
-                                <span>Interaction Task A placeholder</span>
-                            </div>
-                            <div class="benchmark-placeholder benchmark-placeholder-task2">
-                                <span>Interaction Task B placeholder</span>
-                            </div>
+                        <div class="benchmark-task-grid" aria-label="Interaction tasks">
+                            <article class="benchmark-task benchmark-task-showcase">
+                                <strong>Streaming Question Answering (SQA)</strong>
+                                <p>Respond once sufficient visual evidence is available to make a correct decision.</p>
+                                <div
+                                    class="benchmark-placeholder benchmark-placeholder-task1 benchmark-placeholder-image">
+                                    <img src="assets/images/SQA.png" alt="Illustration for Streaming Question Answering"
+                                        class="benchmark-visual-image" loading="lazy">
+                                </div>
+                            </article>
+                            <article class="benchmark-task benchmark-task-showcase">
+                                <strong>Streaming Procedure Guidance (SPG)</strong>
+                                <p>Track procedural progress and proactively cue the next step as the current one nears
+                                    completion.</p>
+                                <div
+                                    class="benchmark-placeholder benchmark-placeholder-task2 benchmark-placeholder-image">
+                                    <img src="assets/images/SPG.png" alt="Illustration for Streaming Procedure Guidance"
+                                        class="benchmark-visual-image" loading="lazy">
+                                </div>
+                            </article>
                         </div>
                     </div>
                 </div>
 
                 <div class="benchmark-slide benchmark-intervention" id="benchmark-intervention">
-                    <div class="benchmark-card">
-                        <div class="benchmark-copy">
-                            <p class="benchmark-kicker">Benchmark 3</p>
+                    <div class="benchmark-card benchmark-card-featured">
+                        <div class="benchmark-copy benchmark-copy-featured">
                             <h3 class="title is-4">Intervention</h3>
                             <p class="benchmark-description">
-                                Intervention tests whether an always-on assistant can issue timely, actionable
-                                responses when the scene calls for assistance.
+                                Intervention probes proactive behavior, where the model assists a user without
+                                explicit requests by anticipating potential errors or failures.
                             </p>
-                            <div class="benchmark-tasks">
-                                <div class="benchmark-task">
-                                    <span class="benchmark-task-label">Task 1</span>
-                                    <strong>Intervention Task A</strong>
-                                    <p>Placeholder for the first intervention task.</p>
-                                </div>
-                                <div class="benchmark-task">
-                                    <span class="benchmark-task-label">Task 2</span>
-                                    <strong>Intervention Task B</strong>
-                                    <p>Placeholder for the second intervention task.</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="benchmark-visuals" aria-label="Task placeholders for the Intervention benchmark">
-                            <div class="benchmark-placeholder benchmark-placeholder-task1">
-                                <span>Intervention Task A placeholder</span>
-                            </div>
-                            <div class="benchmark-placeholder benchmark-placeholder-task2">
-                                <span>Intervention Task B placeholder</span>
-                            </div>
+                        <div class="benchmark-task-grid" aria-label="Intervention tasks">
+                            <article class="benchmark-task benchmark-task-showcase">
+                                <strong>Solicited Intervention (SI)</strong>
+                                <p>Intervene during a known task or procedure only when the user hesitates or makes an
+                                    error.</p>
+                                <div
+                                    class="benchmark-placeholder benchmark-placeholder-task1 benchmark-placeholder-image">
+                                    <img src="assets/images/SI.png" alt="Illustration for Solicited Intervention"
+                                        class="benchmark-visual-image" loading="lazy">
+                                </div>
+                            </article>
+                            <article class="benchmark-task benchmark-task-showcase">
+                                <strong>Unsolicited Intervention (UI)</strong>
+                                <p>Detect imminent risk and intervene early enough to prevent failure, yet restrained
+                                    enough to avoid disruptive responses.</p>
+                                <div
+                                    class="benchmark-placeholder benchmark-placeholder-task2 benchmark-placeholder-image">
+                                    <img src="assets/images/UI.png" alt="Illustration for Unsolicited Intervention"
+                                        class="benchmark-visual-image" loading="lazy">
+                                </div>
+                            </article>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    </div><!-- #streaming-content -->
+    </div>
 
     <div id="retro-content" style="display:none">
         <section class="hero teaser" style="padding-top: 2em;">
@@ -348,9 +352,8 @@
                 </div>
             </div>
         </section>
-    </div><!-- #retro-content -->
+    </div>
 
-    <!--BibTex citation -->
     <section class="section" id="BibTeX" style="padding-bottom: 10px">
         <div class="container is-max-desktop content has-text-justified">
             <div class="bibtex-header">
@@ -364,7 +367,7 @@
 @article{chatterjee2026dont,
   title={Don't Pause! Every prediction matters in a streaming video},
   author={Chatterjee, Dibyadip and Pang, Zhanzhong and Sener, Fadime and Song, Yale and Yao, Angela},
-  journal={arXiv preprint arXiv:2604.20160},
+  journal={...},
   year={2026},
 }
   </code></pre>
@@ -396,30 +399,53 @@
     <script>
         var _evalMode = 'streaming';
 
+        function syncQueryVideo() {
+            var queryVideo = document.getElementById('spot-query-video');
+            if (!queryVideo) return;
+
+            var nextSrc = _evalMode === 'streaming' ? 'assets/images/pro.mp4' : 'assets/images/retro.mp4';
+            var currentSrc = queryVideo.getAttribute('src') || queryVideo.currentSrc || '';
+
+            if (!currentSrc.includes(nextSrc)) {
+                queryVideo.pause();
+                queryVideo.setAttribute('src', nextSrc);
+                queryVideo.load();
+            }
+
+            queryVideo.currentTime = 0;
+            var playPromise = queryVideo.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(function () { });
+            }
+        }
+
         function toggleMode() {
             _evalMode = _evalMode === 'streaming' ? 'retrospective' : 'streaming';
-            var btn = document.querySelector('.hero-mode-button.streaming, .hero-mode-button.paused');
+            var shell = document.querySelector('.hero-mode-shell');
+            var btn = shell.querySelector('.hero-mode-button');
             var sectionTitle = document.getElementById('eval-section-title');
             var querySectionTitle = document.getElementById('query-section-title');
             var streamingContent = document.getElementById('streaming-content');
             var retroContent = document.getElementById('retro-content');
 
             var icon = btn.querySelector('.hero-mode-icon');
-            var label = btn.querySelector('.hero-mode-label');
+            var label = shell.querySelector('.hero-mode-label');
 
             if (_evalMode === 'streaming') {
-                icon.textContent = '►︎';
-                label.textContent = " Don't Pause!";
-                btn.className = 'hero-mode-button streaming';
+                icon.textContent = '⏸︎';
+                label.textContent = "Don't Pause";
+                shell.className = 'hero-mode-shell streaming-mode';
+                btn.className = 'hero-mode-button action-pause';
                 sectionTitle.textContent = 'Streaming Evaluation Protocol';
                 querySectionTitle.textContent = 'Proactive QA';
                 streamingContent.style.display = '';
                 retroContent.style.display = 'none';
             } else {
-                icon.textContent = '⏸︎';
-                label.textContent = ' Pause-Ask-Play';
-                btn.className = 'hero-mode-button paused';
-                sectionTitle.textContent = 'Pause-ask-Play Evaluation Protocol';
+                icon.textContent = '►︎';
+                label.textContent = 'Pause-Ask-Play';
+                shell.className = 'hero-mode-shell paused-mode';
+                btn.className = 'hero-mode-button action-play';
+                sectionTitle.textContent = 'Pause-Ask-Play Evaluation Protocol';
                 querySectionTitle.textContent = 'Retrospective QA';
                 streamingContent.style.display = 'none';
                 retroContent.style.display = '';
@@ -428,10 +454,10 @@
             if (window.switchEvalMode) {
                 window.switchEvalMode(_evalMode);
             }
-            if (window.switchQueryMode) {
-                window.switchQueryMode(_evalMode === 'streaming' ? 'proactive' : 'retro');
-            }
+            syncQueryVideo();
         }
+
+        document.addEventListener('DOMContentLoaded', syncQueryVideo);
 
         function switchBenchmark(benchmarkName, selectedButton) {
             document.querySelectorAll('.benchmark-tab').forEach(button => {
@@ -458,7 +484,6 @@
             }
         }
     </script>
-    <script src="assets/js/query-visualizer.js"></script>
     <script src="assets/js/evaluation-visualizer.js"></script>
 </body>
 
