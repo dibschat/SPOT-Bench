@@ -5,7 +5,7 @@ This repository provides official implementation of:
 >Dibyadip Chatterjee, Zhanzhong Pang, Fadime Sener, Yale Song and Angela Yao.  
 
 [![Webpage](https://img.shields.io/badge/Webpage-SPOT--Bench-1f883d?logo=googlechrome&style=flat-square)](https://dibschat.github.io/SPOT-Bench)
-[![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg?style=flat-square&logo=arxiv)](https://arxiv.org/abs/)
+[![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg?style=flat-square&logo=arxiv)](#)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Coming%20Soon-ffd21e?style=flat-square&logo=huggingface)](#)
 
 Release Plan
