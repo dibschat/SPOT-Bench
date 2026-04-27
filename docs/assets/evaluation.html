@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="SPOT-Bench Evaluation">
+    <meta property="og:title" content="SPOT-Bench Evaluation" />
+    <meta property="og:description" content="Retrospective evaluation view for SPOT-Bench" />
+    <meta property="og:url" content="https://dibschat.github.io/SPOT-Bench/evaluation" />
+    <meta name="keywords" content="Streaming Videos, VideoLLMs, Evaluation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SPOT-Bench Evaluation</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body class="retro-page">
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered" style="margin-bottom: 0em">
+                    <div class="column is-max-desktop has-text-centered">
+                        <h1 class="title is-2 publication-title" style="margin-bottom:0rem">
+                            <strong>
+                                <span class="btn-group hero-mode-shell">
+                                    <a href="index.html" class="button is-normal hero-mode-button paused">Paused!</a>
+                                </span>
+                                <span class="page-title-rest">Every prediction matters in a streaming video</span>
+                            </strong>
+                        </h1>
+                    </div>
+                </div>
+                <div class="columns is-centered">
+                    <div class="column is-four-fifths has-text-centered">
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://dibschat.github.io/">Dibyadip
+                                    Chatterjee</a><sup>1</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=PqDLBpkAAAAJ&amp;hl=en">Zhanzhong
+                                    Pang</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span class="author-block">
+                                <a href="https://fadimesener.github.io/">Fadime Sener</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span><br>
+                            <span class="author-block">
+                                <a href="https://people.csail.mit.edu/yalesong/home/">Yale
+                                    Song</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span class="author-block">
+                                <a href="https://www.comp.nus.edu.sg/~ayao/">Angela
+                                    Yao</a><sup>1</sup>
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>National University of Singapore</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="author-block"><sup>2</sup>Google Inc.</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+
+                        <br>
+                        <div class="columns is-centered" style="margin-bottom: 0em">
+                            <div class="column is-max-desktop has-text-centered" style="padding: 0.5em">
+                                <h1 class="title is-4 publication-title" style="margin-bottom:0rem">
+                                    <strong>arXiv 2026</strong>
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div class="column has-text-centered" style="margin-top: 0; margin-bottom: 0;">
+                            <div class="publication-links">
+                                <div class="btn-group btn-group-sm main-btn-group">
+                                    <a target="_blank" rel="noopener noreferrer"
+                                        href="https://arxiv.org/pdf/2602.20160"><span class="button is-normal">
+                                            <span class="icon"><i class="fas fa-file-pdf"></i></span>&nbsp;&nbsp;Paper
+                                        </span></a>
+                                    <a target="_blank" rel="noopener noreferrer"
+                                        href="https://github.com/cwchenwang/tttLRM"><span class="button is-normal">
+                                            <span class="icon"><i class="fab fa-github"></i></span>&nbsp;&nbsp;Code
+                                        </span></a>
+                                    <a target="_blank" rel="noopener noreferrer" href="#"><span
+                                            class="button is-normal">
+                                            <span class="icon"><img
+                                                    src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg"
+                                                    alt="HuggingFace"
+                                                    style="width: 1em; height: 1em;"></span>&nbsp;&nbsp;Data
+                                        </span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section hero shared-eval-section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Retrospective Evaluation at a Glance</h2>
+                    <div class="shared-eval-card">
+                        <div class="shared-eval-canvas-wrap">
+                            <canvas id="spot-eval-canvas" class="shared-eval-canvas" data-eval-mode="retrospective"
+                                aria-label="Animated retrospective evaluation protocol"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section hero" style="padding-top: 1rem; padding-bottom: 1rem;">
+        <div class="container is-max-desktop">
+            <div class="figure-card">
+                <h2 class="title is-3 has-text-centered">Do retrospective QA benchmarks incentivize streaming model
+                    development?</h2>
+                <p class="figure-card-copy">
+                    I could not extract the exact paragraph text from <code>SPOT_Bench_arxiv.pdf</code> in this
+                    environment, so this section is ready for you to replace with the final paper paragraph verbatim.
+                </p>
+                <img src="images/retroQA.png"
+                    alt="Figure illustrating why retrospective QA benchmarks may not incentivize streaming model development">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <div class="bibtex-header">
+                            <h2 class="title is-3 has-text-centered bibtex-title">BibTeX</h2>
+                            <button class="bibtex-copy-button" type="button" aria-label="Copy BibTeX"
+                                onclick="copyBibtex('bibtex-retro', this)">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code id="bibtex-retro">@article{chatterjee2026spotbench,
+  title={Don't Pause! Every prediction matters in a streaming video},
+  author={Chatterjee, Dibyadip and Pang, Zhanzhong and Sener, Fadime and Song, Yale and Yao, Angela},
+  year={2026},
+  note={Update arXiv identifier and venue after release}
+}</code></pre>
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page. We
+                            additionally acknowledge the <a href="https://cwchenwang.github.io/tttLRM"
+                                target="_blank">tttLRM</a> paper for the base template structure.
+                            You are free to borrow the source code of this website, we just ask that you link back to
+                            this page in the footer. This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function copyBibtex(targetId, button) {
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            const text = target.textContent.trim();
+            try {
+                await navigator.clipboard.writeText(text);
+                button.classList.add('copied');
+                setTimeout(() => button.classList.remove('copied'), 1200);
+            } catch (error) {
+                console.error('Failed to copy BibTeX', error);
+            }
+        }
+    </script>
+    <script src="evaluation-visualizer.js"></script>
+</body>
+
+</html>

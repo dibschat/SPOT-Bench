@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="SPOT-Bench">
+    <meta property="og:title" content="SPOT-Bench" />
+    <meta property="og:description" content="Don't Pause! Every prediction matters in a streaming video" />
+    <meta property="og:url" content="https://dibschat.github.io/SPOT-Bench" />
+
+    <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="keywords"
+        content="Streaming Videos, VideoLLMs, Multimodal Large Language Models, Video Question Answering, Online VideoQA, Proactive Queries, Real-time Assistance, SPOT-Bench">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SPOT-Bench</title>
+    <link rel="icon" type="image/png" href="assets/images/ddLogo.png">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered" style="margin-bottom: 0em">
+                    <div class="column is-max-desktop has-text-centered">
+                        <h1 class="title is-2 publication-title" style="margin-bottom:0rem">
+                            <strong>
+                                <span class="hero-mode-shell">
+                                    <button class="hero-mode-button streaming" onclick="toggleMode()"><span
+                                            class="hero-mode-icon">&#9654;&#xFE0E;</span><span class="hero-mode-label">
+                                            Don't Pause!</span></button>
+                                </span>
+                                <span class="page-title-rest">Every prediction matters in a streaming video</span>
+                            </strong>
+                        </h1>
+                    </div>
+                </div>
+                <div class="columns is-centered">
+                    <div class="column is-four-fifths has-text-centered">
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://dibschat.github.io/">Dibyadip
+                                    Chatterjee</a><sup>1</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=PqDLBpkAAAAJ&amp;hl=en">Zhanzhong
+                                    Pang</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span class="author-block">
+                                <a href="https://fadimesener.github.io/">Fadime Sener</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </span><br>
+                            <span class="author-block">
+                                <a href="https://people.csail.mit.edu/yalesong/home/">Yale
+                                    Song</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span class="author-block">
+                                <a href="https://www.comp.nus.edu.sg/~ayao/">Angela
+                                    Yao</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>National University of Singapore</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="author-block"><sup>2</sup>Google Inc.</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+
+                        <br>
+                        <div class="columns is-centered" style="margin-bottom: 0em">
+                            <div class="column is-max-desktop has-text-centered" style="padding: 0.5em">
+                                <h1 class="title is-4 publication-title" style="margin-bottom:0rem">
+                                    <strong>2026</strong>
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div class="column has-text-centered" style="margin-top: 0; margin-bottom: 0;">
+                            <div class="publication-links">
+                                <div class="btn-group btn-group-sm main-btn-group">
+                                    <a target="_blank" rel="noopener noreferrer"
+                                        href="https://arxiv.org/pdf/2602.20160"><span class="button is-normal"
+                                            onclick="">
+                                            <span class="icon"><i class="fas fa-file-pdf"></i></span>&nbsp;&nbsp;Paper
+                                        </span></a>
+                                    <a target="_blank" rel="noopener noreferrer"
+                                        href="https://github.com/dibschat/SPOT-Bench"><span class="button is-normal"
+                                            onclick="">
+                                            <span class="icon"><i class="fab fa-github"></i></span>&nbsp;&nbsp;Code
+                                        </span></a>
+                                    <a target="_blank" rel="noopener noreferrer"
+                                        href="https://github.com/dibschat/SPOT-Bench"><span class="button is-normal"
+                                            onclick="">
+                                            <span class="icon"><img
+                                                    src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg"
+                                                    alt="HuggingFace"
+                                                    style="width: 1em; height: 1em;"></span>&nbsp;&nbsp;Data
+                                        </span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paper abstract -->
+    <section class="section hero" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths" style="max-width: 90%; margin: 0 auto;">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified"
+                        style="background: #f8f8f8; border-left: 4px solid #363636; border-radius: 4px; padding: 1.25rem 1.5rem; font-size: 15px; hyphens: auto;">
+                        <p style="margin-bottom: 0;">
+                            Streaming video models should respond the moment an event unfolds, not after the moment has
+                            passed. Yet existing online VideoQA benchmarks remain largely retrospective. They pause the
+                            video at fixed timestamps, pose questions about current or past events, and score models
+                            only at those moments. This protocol leaves streaming predictions untested. To close this
+                            gap, we introduce SPOT-Bench, featuring multi-turn proactive queries that evaluate general
+                            streaming perception and assistive capabilities required by an always-on, real-time
+                            assistant. SPOT-Bench comes with Timeliness-F1, a consolidated metric that measures
+                            streaming predictions by their temporal precision and balanced coverage across the entire
+                            video. Our benchmark reveals: (i) offline models detect events reliably but spam
+                            predictions unprompted; (ii) post-training for silence reduces spamming but induces
+                            unresponsiveness; (iii) half of the streaming video expects no response, which we
+                            term dead-time &mdash; compute spent here does not affect response latency. These findings
+                            motivate AsynKV, a training-free streaming adaptation of offline models, that retains their
+                            event perception while improving their streaming behavior. AsynKV features a long-short term
+                            memory, utilized efficiently by scaling compute during dead-time. It serves as a strong
+                            baseline on SPOT-Bench, outperforming existing streaming models, and achieves
+                            state-of-the-art on retrospective benchmarks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <section class="section hero shared-eval-section">
+        <div class="eval-canvas-outer">
+            <h2 class="title is-3 has-text-centered" id="eval-section-title">Streaming Evaluation Protocol</h2>
+            <div class="shared-eval-card">
+                <div class="shared-eval-canvas-wrap">
+                    <canvas id="spot-eval-canvas" class="shared-eval-canvas" data-eval-mode="streaming"
+                        aria-label="Animated comparison of streaming and retrospective evaluation"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Query-type animation section (after evaluation) -->
+    <section class="section hero shared-eval-section">
+        <div class="eval-canvas-outer">
+            <h2 class="title is-3 has-text-centered" id="query-section-title">Proactive QA</h2>
+            <div class="shared-eval-card">
+                <div class="shared-eval-canvas-wrap">
+                    <canvas id="spot-query-canvas" class="shared-eval-canvas query-viz-canvas"
+                        data-query-mode="proactive"
+                        aria-label="Animated illustration of retrospective and proactive query types"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="streaming-content">
+        <section class="section hero benchmark-section">
+            <div class="eval-canvas-outer benchmark-outer">
+                <div class="has-text-centered">
+                    <h2 class="title is-3">Three Streaming Benchmarks</h2>
+                    <p class="benchmark-intro">
+                        SPOT-Bench evaluates always-on video models across complementary streaming skills:
+                        noticing events, conversing at the right time, and intervening when action matters.
+                    </p>
+
+                    <div class="benchmark-tabs" role="tablist" aria-label="SPOT-Bench benchmark categories">
+                        <button class="benchmark-tab benchmark-detection active" type="button" role="tab"
+                            aria-selected="true" data-benchmark="detection"
+                            onclick="switchBenchmark('detection', this)">
+                            Detection
+                        </button>
+                        <button class="benchmark-tab benchmark-interaction" type="button" role="tab"
+                            aria-selected="false" data-benchmark="interaction"
+                            onclick="switchBenchmark('interaction', this)">
+                            Interaction
+                        </button>
+                        <button class="benchmark-tab benchmark-intervention" type="button" role="tab"
+                            aria-selected="false" data-benchmark="intervention"
+                            onclick="switchBenchmark('intervention', this)">
+                            Intervention
+                        </button>
+                    </div>
+                </div>
+
+                <div class="benchmark-slide benchmark-detection active" id="benchmark-detection">
+                    <div class="benchmark-card">
+                        <div class="benchmark-copy">
+                            <p class="benchmark-kicker">Benchmark 1</p>
+                            <h3 class="title is-4">Detection</h3>
+                            <p class="benchmark-description">
+                                Detection focuses on whether a streaming model can identify target events as they
+                                unfold, without waiting for the video to be paused.
+                            </p>
+                            <div class="benchmark-tasks">
+                                <div class="benchmark-task">
+                                    <span class="benchmark-task-label">Task 1</span>
+                                    <strong>Detection Task A</strong>
+                                    <p>Placeholder for the first detection task.</p>
+                                </div>
+                                <div class="benchmark-task">
+                                    <span class="benchmark-task-label">Task 2</span>
+                                    <strong>Detection Task B</strong>
+                                    <p>Placeholder for the second detection task.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="benchmark-visuals" aria-label="Task placeholders for the Detection benchmark">
+                            <div class="benchmark-placeholder benchmark-placeholder-task1">
+                                <span>Detection Task A placeholder</span>
+                            </div>
+                            <div class="benchmark-placeholder benchmark-placeholder-task2">
+                                <span>Detection Task B placeholder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benchmark-slide benchmark-interaction" id="benchmark-interaction">
+                    <div class="benchmark-card">
+                        <div class="benchmark-copy">
+                            <p class="benchmark-kicker">Benchmark 2</p>
+                            <h3 class="title is-4">Interaction</h3>
+                            <p class="benchmark-description">
+                                Interaction evaluates multi-turn proactive queries, where the model must respond
+                                at the right moment while the video stream continues.
+                            </p>
+                            <div class="benchmark-tasks">
+                                <div class="benchmark-task">
+                                    <span class="benchmark-task-label">Task 1</span>
+                                    <strong>Interaction Task A</strong>
+                                    <p>Placeholder for the first interaction task.</p>
+                                </div>
+                                <div class="benchmark-task">
+                                    <span class="benchmark-task-label">Task 2</span>
+                                    <strong>Interaction Task B</strong>
+                                    <p>Placeholder for the second interaction task.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="benchmark-visuals" aria-label="Task placeholders for the Interaction benchmark">
+                            <div class="benchmark-placeholder benchmark-placeholder-task1">
+                                <span>Interaction Task A placeholder</span>
+                            </div>
+                            <div class="benchmark-placeholder benchmark-placeholder-task2">
+                                <span>Interaction Task B placeholder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benchmark-slide benchmark-intervention" id="benchmark-intervention">
+                    <div class="benchmark-card">
+                        <div class="benchmark-copy">
+                            <p class="benchmark-kicker">Benchmark 3</p>
+                            <h3 class="title is-4">Intervention</h3>
+                            <p class="benchmark-description">
+                                Intervention tests whether an always-on assistant can issue timely, actionable
+                                responses when the scene calls for assistance.
+                            </p>
+                            <div class="benchmark-tasks">
+                                <div class="benchmark-task">
+                                    <span class="benchmark-task-label">Task 1</span>
+                                    <strong>Intervention Task A</strong>
+                                    <p>Placeholder for the first intervention task.</p>
+                                </div>
+                                <div class="benchmark-task">
+                                    <span class="benchmark-task-label">Task 2</span>
+                                    <strong>Intervention Task B</strong>
+                                    <p>Placeholder for the second intervention task.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="benchmark-visuals" aria-label="Task placeholders for the Intervention benchmark">
+                            <div class="benchmark-placeholder benchmark-placeholder-task1">
+                                <span>Intervention Task A placeholder</span>
+                            </div>
+                            <div class="benchmark-placeholder benchmark-placeholder-task2">
+                                <span>Intervention Task B placeholder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!-- #streaming-content -->
+
+    <div id="retro-content" style="display:none">
+        <section class="hero teaser" style="padding-top: 2em;">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column">
+                        <h2 class="title is-3">Do existing Online VideoQA benchmarks incentivize streaming?</h2>
+                        <img src="assets/images/retroQA.png"
+                            alt="Figure illustrating why retrospective QA benchmarks may not incentivize streaming model development"
+                            class="teaser-image" style="max-width: 85%;">
+                        <div class="content has-text-justified">
+                            <p>
+                                Existing Online VideoQA benchmarks such as StreamingBench and OVO-Bench mainly adopt a
+                                "pause-ask-play" evaluation protocol, which tests whether a model can answer
+                                retrospective queries about a video after it has happened. In Table 1, we analyze if
+                                such benchmarks incentivize streaming model development. After comparing
+                                state-of-the-art streaming models with closed- and open-source offline MLLMs, we observe
+                                the following:
+                            </p>
+                            <ul>
+                                <li><strong>Blind baselines perform better than random.</strong></li>
+                                <li><strong>One frame is nearly enough.</strong></li>
+                                <li><strong>Four recent frames outperform streaming models.</strong></li>
+                            </ul>
+                            <p>
+                                <strong>Conclusion.</strong> Together, these findings reveal a fundamental limitation:
+                                OVO-Bench and StreamingBench measure descriptive understanding, evaluating whether a
+                                model can describe observed events. Their MCQ format suffers from language bias;
+                                correctness-only evaluation provides no signal for timeliness or frequency. Their short
+                                durations remove the need for long-term temporal modeling &mdash; an offline model
+                                processing a single frame can match one that streams every frame. Consequently, these
+                                benchmarks offer little incentive to develop streaming models with proactive, timely
+                                intervention capabilities; the core requirement for real-world assistive systems.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!-- #retro-content -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX" style="padding-bottom: 10px">
+        <div class="container is-max-desktop content has-text-justified">
+            <div class="bibtex-header">
+                <h2 class="title is-3 has-text-centered bibtex-title">BibTeX</h2>
+                <button class="bibtex-copy-button" type="button" aria-label="Copy BibTeX"
+                    onclick="copyBibtex('bibtex-main', this)">
+                    <i class="far fa-copy"></i>
+                </button>
+            </div>
+            <pre><code id="bibtex-main">
+@article{chatterjee2026dont,
+  title={Don't Pause! Every prediction matters in a streaming video},
+  author={Chatterjee, Dibyadip and Pang, Zhanzhong and Sener, Fadime and Song, Yale and Yao, Angela},
+  journal={arXiv preprint arXiv:2604.20160},
+  year={2026},
+}
+  </code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page. We
+                            additionally acknowledge <a href="https://edit-by-track.github.io/"
+                                target="_blank">Edit-by-Track</a> for certain design elements.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var _evalMode = 'streaming';
+
+        function toggleMode() {
+            _evalMode = _evalMode === 'streaming' ? 'retrospective' : 'streaming';
+            var btn = document.querySelector('.hero-mode-button.streaming, .hero-mode-button.paused');
+            var sectionTitle = document.getElementById('eval-section-title');
+            var querySectionTitle = document.getElementById('query-section-title');
+            var streamingContent = document.getElementById('streaming-content');
+            var retroContent = document.getElementById('retro-content');
+
+            var icon = btn.querySelector('.hero-mode-icon');
+            var label = btn.querySelector('.hero-mode-label');
+
+            if (_evalMode === 'streaming') {
+                icon.textContent = '►︎';
+                label.textContent = " Don't Pause!";
+                btn.className = 'hero-mode-button streaming';
+                sectionTitle.textContent = 'Streaming Evaluation Protocol';
+                querySectionTitle.textContent = 'Proactive QA';
+                streamingContent.style.display = '';
+                retroContent.style.display = 'none';
+            } else {
+                icon.textContent = '⏸︎';
+                label.textContent = ' Pause-Ask-Play';
+                btn.className = 'hero-mode-button paused';
+                sectionTitle.textContent = 'Pause-ask-Play Evaluation Protocol';
+                querySectionTitle.textContent = 'Retrospective QA';
+                streamingContent.style.display = 'none';
+                retroContent.style.display = '';
+            }
+
+            if (window.switchEvalMode) {
+                window.switchEvalMode(_evalMode);
+            }
+            if (window.switchQueryMode) {
+                window.switchQueryMode(_evalMode === 'streaming' ? 'proactive' : 'retro');
+            }
+        }
+
+        function switchBenchmark(benchmarkName, selectedButton) {
+            document.querySelectorAll('.benchmark-tab').forEach(button => {
+                const isActive = button === selectedButton;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            document.querySelectorAll('.benchmark-slide').forEach(slide => {
+                slide.classList.toggle('active', slide.id === `benchmark-${benchmarkName}`);
+            });
+        }
+
+        async function copyBibtex(targetId, button) {
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            const text = target.textContent.trim();
+            try {
+                await navigator.clipboard.writeText(text);
+                button.classList.add('copied');
+                setTimeout(() => button.classList.remove('copied'), 1200);
+            } catch (error) {
+                console.error('Failed to copy BibTeX', error);
+            }
+        }
+    </script>
+    <script src="assets/js/query-visualizer.js"></script>
+    <script src="assets/js/evaluation-visualizer.js"></script>
+</body>
+
+</html>

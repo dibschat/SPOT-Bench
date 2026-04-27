@@ -1,0 +1,680 @@
+html,
+body {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Google Sans', 'Noto Sans', 'Castoro', sans-serif;
+}
+
+.hero-body {
+    padding-bottom: 1.5rem;
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors a {
+    color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.publication-links {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.author-block {
+    display: inline-block;
+}
+
+.link-block {
+    display: inline-block;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.teaser {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.teaser .hero-body {
+    padding-top: 0;
+    padding-bottom: 3rem;
+}
+
+.btn-group {
+    background-color: rgba(249, 249, 249, 0.6);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.1em;
+    margin-top: 0.1em;
+    padding: 0.5em;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 12px;
+}
+
+.button {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 0.5px;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 16px;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+        box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+        color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #f4f4f4;
+    border-style: solid;
+    border-color: #fff6f6;
+    border-width: 0.5px;
+}
+
+.main-btn-group {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-btn-group .button {
+    font-weight: 600;
+}
+
+.main-btn-group .button:hover,
+.main-btn-group .button:focus {
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(214, 214, 214, 0.375);
+    border-color: #ffffff;
+}
+
+.main-btn-group .button.active {
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: white;
+    background-color: rgba(126, 126, 126, 0.375);
+    border-color: #efefef;
+}
+
+.title-highlight {
+    color: #ff2800;
+}
+
+.teaser-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.comparison-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.method-pill-group {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.method-pill {
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.method-pill.active {
+    background: #3273dc;
+    color: white;
+}
+
+.method-pill-label {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.play-toggle-button {
+    border: none;
+    background: #e8e8e8;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.image-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.image-wrapper {
+    flex: 1;
+}
+
+.video-compare-container {
+    position: relative;
+    width: 100%;
+}
+
+.videoMerge {
+    width: 100%;
+    height: auto;
+}
+
+.page-title-rest {
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.hero-mode-shell {
+    display: inline;
+}
+
+.hero-mode-button {
+    font: inherit;
+    background-color: rgba(249, 249, 249, 0.6);
+    border: 1px solid white;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 12px;
+    padding: 0.1em 0.55em;
+    cursor: pointer;
+    display: inline;
+    min-height: unset;
+    line-height: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+        box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.hero-mode-button:hover,
+.hero-mode-button:focus-visible {
+    background-color: #f4f4f4;
+    border-color: #fff6f6;
+    outline: none;
+    text-decoration: none;
+}
+
+.hero-mode-button.streaming {
+    color: #17805d;
+}
+
+.hero-mode-button.paused {
+    color: #cc445c;
+}
+
+.query-viz-canvas {
+    aspect-ratio: 960 / 290;
+}
+
+/* ─── Evaluation canvas width ────────────────────────────────────────────
+   The rest of the page content lives inside .is-max-desktop (≈ 960 px).
+   max-width here controls how wide the canvas card grows.
+
+   Quick reference:
+     816px  → narrower than main content (85 %)
+     960px  → same as main content (100 %)
+   1104px  → 15 % wider on each side than main content  ← current
+   1248px  → 30 % wider on each side than main content
+
+   Change ONLY this one value to resize the canvas section.
+──────────────────────────────────────────────────────────────────────── */
+.eval-canvas-outer {
+    max-width: 1104px;
+    /* ← adjust this to make the canvas wider or narrower */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    box-sizing: border-box;
+}
+
+.shared-eval-section {
+    padding-top: 1.25rem;
+    padding-bottom: 1rem;
+}
+
+.shared-eval-card {
+    padding: 1.15rem;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.shared-eval-canvas-wrap {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+}
+
+.shared-eval-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 960 / 360;
+}
+
+.benchmark-section {
+    padding-top: 1.5rem;
+}
+
+.benchmark-intro {
+    max-width: 760px;
+    margin: 0 auto 1.25rem;
+    color: #4b5563;
+    line-height: 1.65;
+}
+
+.benchmark-outer {
+    padding-top: 0;
+}
+
+.benchmark-tabs {
+    display: inline-flex;
+    gap: 0.35rem;
+    margin-bottom: 1.15rem;
+    padding: 0.35rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    background: #f8fafc;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.benchmark-tab {
+    --benchmark-color: #4b5563;
+    --benchmark-shadow: rgba(75, 85, 99, 0.18);
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #4b5563;
+    cursor: pointer;
+    font-family: 'Google Sans', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    padding: 0.65rem 1.1rem;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.benchmark-detection {
+    --benchmark-color: #a5762d;
+    --benchmark-soft: rgba(165, 118, 45, 0.15);
+    --benchmark-softer: rgba(165, 118, 45, 0.08);
+    --benchmark-shadow: rgba(165, 118, 45, 0.22);
+}
+
+.benchmark-interaction {
+    --benchmark-color: #4e6eb6;
+    --benchmark-soft: rgba(78, 110, 182, 0.15);
+    --benchmark-softer: rgba(78, 110, 182, 0.08);
+    --benchmark-shadow: rgba(78, 110, 182, 0.22);
+}
+
+.benchmark-intervention {
+    --benchmark-color: #3a8c78;
+    --benchmark-soft: rgba(58, 140, 120, 0.15);
+    --benchmark-softer: rgba(58, 140, 120, 0.08);
+    --benchmark-shadow: rgba(58, 140, 120, 0.22);
+}
+
+.benchmark-tab:hover,
+.benchmark-tab:focus-visible {
+    color: var(--benchmark-color);
+    outline: none;
+}
+
+.benchmark-tab.active {
+    background: var(--benchmark-color);
+    color: #ffffff;
+    box-shadow: 0 8px 18px var(--benchmark-shadow);
+}
+
+.benchmark-slide {
+    display: none;
+    text-align: left;
+    margin-top: 0.5rem;
+}
+
+.benchmark-slide.active {
+    display: block;
+}
+
+.benchmark-description {
+    margin: 0 0 1rem;
+    color: #374151;
+    font-size: 1.05rem;
+    line-height: 1.65;
+}
+
+.benchmark-card {
+    display: grid;
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 1.15fr);
+    gap: 1.5rem;
+    padding: 1.4rem;
+    border: 1px solid var(--benchmark-soft);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.07);
+}
+
+.benchmark-visuals {
+    display: grid;
+    gap: 1rem;
+}
+
+.benchmark-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 16 / 7;
+    border: 1px dashed var(--benchmark-color);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 20% 20%, var(--benchmark-soft), transparent 28%),
+        radial-gradient(circle at 80% 35%, var(--benchmark-softer), transparent 25%),
+        linear-gradient(135deg, #f8fafc, #ffffff);
+    color: #6b7280;
+    font-weight: 700;
+    text-align: center;
+    padding: 1rem;
+}
+
+.benchmark-placeholder-task1 {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.94)),
+        repeating-linear-gradient(90deg, transparent 0, transparent 46px, var(--benchmark-softer) 46px, var(--benchmark-softer) 92px),
+        linear-gradient(135deg, #f8fafc, #ffffff);
+}
+
+.benchmark-placeholder-task2 {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.94)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 34px, var(--benchmark-softer) 34px, var(--benchmark-softer) 68px),
+        linear-gradient(135deg, #f8fafc, #ffffff);
+}
+
+.benchmark-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.25rem 0.4rem 0.25rem 0.2rem;
+}
+
+.benchmark-kicker {
+    margin-bottom: 0.35rem;
+    color: var(--benchmark-color);
+    font-family: 'Google Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.benchmark-copy .title {
+    margin-bottom: 0.75rem;
+}
+
+.benchmark-tasks {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.benchmark-task {
+    padding: 0.9rem;
+    border: 1px solid var(--benchmark-soft);
+    border-radius: 14px;
+    background: var(--benchmark-softer);
+}
+
+.benchmark-task-label {
+    display: inline-flex;
+    margin-bottom: 0.35rem;
+    color: var(--benchmark-color);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.benchmark-task strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #111827;
+    font-family: 'Google Sans', sans-serif;
+}
+
+.benchmark-task p {
+    margin-bottom: 0;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.bibtex-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.bibtex-title {
+    margin-bottom: 0 !important;
+}
+
+.bibtex-copy-button {
+    border: none;
+    background: transparent;
+    color: #4b5563;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.25rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.bibtex-copy-button:hover,
+.bibtex-copy-button:focus-visible {
+    color: #111827;
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.bibtex-copy-button.copied {
+    color: #17805d;
+}
+
+.table-card {
+    padding: 1.3rem;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.table-card-copy {
+    margin-top: 0.4rem;
+    margin-bottom: 1rem;
+    color: #4b5563;
+    line-height: 1.65;
+}
+
+.table-placeholder-note {
+    margin-top: 0.9rem;
+    color: #6b7280;
+    font-size: 0.92rem;
+}
+
+.evaluation-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.evaluation-table th,
+.evaluation-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+}
+
+.evaluation-table thead th {
+    background: #f8fafc;
+    color: #111827;
+    font-family: 'Google Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.evaluation-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.evaluation-table td {
+    color: #374151;
+    line-height: 1.55;
+}
+
+.retro-page {
+    background: #eef1f4;
+}
+
+.retro-page .shared-eval-card,
+.retro-page .table-card,
+.retro-page .figure-card {
+    background: #f8fafc;
+}
+
+.figure-card {
+    padding: 1.3rem;
+    border-radius: 20px;
+    border: 1px solid #d7dde5;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.figure-card-copy {
+    margin-bottom: 1rem;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.figure-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    border: 1px solid #d7dde5;
+    background: #ffffff;
+}
+
+.evaluation-table td.placeholder {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.evaluation-table .takeaway {
+    color: #4b5563;
+}
+
+@media screen and (max-width: 768px) {
+
+    .shared-eval-card,
+    .table-card,
+    .figure-card {
+        padding: 1rem;
+    }
+
+    .evaluation-table th,
+    .evaluation-table td {
+        padding: 0.75rem;
+        font-size: 0.92rem;
+    }
+
+    .benchmark-tabs {
+        display: flex;
+        width: 100%;
+    }
+
+    .benchmark-tab {
+        flex: 1;
+        padding: 0.6rem 0.7rem;
+    }
+
+    .benchmark-card {
+        grid-template-columns: 1fr;
+    }
+
+    .benchmark-visuals {
+        order: 2;
+    }
+
+    .benchmark-copy {
+        order: 1;
+        padding: 0;
+    }
+
+    .benchmark-placeholder {
+        aspect-ratio: 16 / 8;
+    }
+}
