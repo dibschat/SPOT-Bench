@@ -74,11 +74,11 @@ output = processor.batch_decode(
 If you find our work useful, please cite:
 
 ```bibtex
-@article{chatterjee2025spotbench,
+@article{chatterjee2026don,
   title={Don't Pause! Every prediction matters in a streaming video},
   author={Chatterjee, Dibyadip and Pang, Zhanzhong and Sener, Fadime and Song, Yale and Yao, Angela},
-  journal={arXiv preprint},
-  year={2025}
+  journal={arXiv preprint arXiv:2604.24317},
+  year={2026}
 }
 ```
 
