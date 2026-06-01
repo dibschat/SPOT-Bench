@@ -1,11 +1,11 @@
-# SPOT-Bench \& AsynKV
+# SPOT-Bench
 
 This repository provides official implementation of:
 > **Don't Pause! Every prediction matters in a streaming video**  
 >Dibyadip Chatterjee, Zhanzhong Pang, Fadime Sener, Yale Song and Angela Yao.  
 
 [![Webpage](https://img.shields.io/badge/Webpage-SPOT--Bench-1f883d?logo=googlechrome&style=flat-square)](https://dibschat.github.io/SPOT-Bench)
-[![arXiv](https://img.shields.io/badge/arXiv-Coming%20Soon-b31b1b.svg?style=flat-square&logo=arxiv)](#)
+[![arXiv](https://img.shields.io/badge/arXiv-2604.24317-b31b1b?logo=arxiv&style=flat-square)](https://arxiv.org/abs/2604.24317)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Coming%20Soon-ffd21e?style=flat-square&logo=huggingface)](#)
 
 Release Plan
