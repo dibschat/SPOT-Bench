@@ -10,10 +10,10 @@ This repository provides official implementation of:
 
 Release Plan
 
-- [ ] Release AsynKV inference code (Estimated: 14 days)
-- [ ] Release SPOT-Bench on HuggingFace (Estimated: 7 days)
-- [ ] Release StreamingVLM and MMDuet2 baselines (Estimated: 3 days)
-- [ ] Release evaluation code (Estimated: 3 days)
+- [ ] Release AsynKV inference code (Estimated: mid-June)
+- [ ] Release SPOT-Bench on HuggingFace (Estimated: mid-June)
+- [ ] Release StreamingVLM and MMDuet2 baselines (Estimated: mid-June)
+- [ ] Release evaluation code (Estimated: mid-June)
 - [x] Project page live
 - [x] Release paper on arXiv
 
