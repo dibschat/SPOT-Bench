@@ -5,7 +5,7 @@ This repository provides official implementation of:
 > **Don't Pause! Every prediction matters in a streaming video**
 > Dibyadip Chatterjee, Zhanzhong Pang, Fadime Sener, Yale Song and Angela Yao.
 
-SPOT-Bench is a benchmark for interaction models and, more broadly, streaming video models.
+SPOT-Bench is a benchmark for **interaction models** and, more broadly, **streaming video models**.
 
 [![Webpage](https://img.shields.io/badge/Webpage-SPOT--Bench-1f883d?logo=googlechrome&style=flat-square)](https://dibschat.github.io/SPOT-Bench)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.24317-b31b1b?logo=arxiv&style=flat-square)](https://arxiv.org/abs/2604.24317)
