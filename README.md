@@ -1,21 +1,24 @@
 # SPOT-Bench
 
 This repository provides official implementation of:
-> **Don't Pause! Every prediction matters in a streaming video**  
->Dibyadip Chatterjee, Zhanzhong Pang, Fadime Sener, Yale Song and Angela Yao.  
+
+> **Don't Pause! Every prediction matters in a streaming video**
+> Dibyadip Chatterjee, Zhanzhong Pang, Fadime Sener, Yale Song and Angela Yao.
 
 [![Webpage](https://img.shields.io/badge/Webpage-SPOT--Bench-1f883d?logo=googlechrome&style=flat-square)](https://dibschat.github.io/SPOT-Bench)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.24317-b31b1b?logo=arxiv&style=flat-square)](https://arxiv.org/abs/2604.24317)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-SPOT--Bench-ffd21e?style=flat-square&logo=huggingface)](#https://huggingface.co/datasets/cvml-nus/spot-bench)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-SPOT--Bench-ffd21e?style=flat-square&logo=huggingface)](https://huggingface.co/datasets/cvml-nus/spot-bench)
 
 Release Plan
 
-- [ ] Release AsynKV inference code (Estimated: mid-June)
-- [ ] Release SPOT-Bench on HuggingFace (Estimated: mid-June)
-- [ ] Release StreamingVLM and MMDuet2 baselines (Estimated: mid-June)
-- [ ] Release evaluation code (Estimated: mid-June)
-- [x] Project page live
-- [x] Release paper on arXiv
+- [ ] Release challenge for Interaction and Intervention held-out test split
+- [ ] Update paper on arXiv with (Coming Soon)
+- [ ] Add MiniCPM-o 4.5 to the baselines (Coming Soon)
+- [X] Add JoyAI-VL-Interaction to the baselines
+- [X] Release streaming inference code
+- [X] Release SPOT-Bench on HuggingFace
+- [X] Project page live
+- [X] Release paper on arXiv
 
 ## Reproducing Table 1: Online VideoQA Baselines
 
@@ -83,4 +86,5 @@ If you find our work useful, please cite:
 ```
 
 ## Acknowledgements
-Our evaluation code builds upon the well-organized repositories of [StreamingBench](https://github.com/thunlp-mt/streamingbench) and [OVO-Bench](https://github.com/joeleelyf/ovo-bench). We also thank the authors of [StreamingVLM](https://github.com/mit-han-lab/streaming-vlm) and [MMDuet2](https://github.com/yellow-binary-tree/MMDuet2) for their excellent open-source releases.
+
+Our evaluation code builds upon the well-organized repositories of [StreamingBench](https://github.com/thunlp-mt/streamingbench) and [OVO-Bench](https://github.com/joeleelyf/ovo-bench). We also thank the authors of [StreamingVLM](https://github.com/mit-han-lab/streaming-vlm), [MMDuet2](https://github.com/yellow-binary-tree/MMDuet2) and [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) for their excellent open-source releases.
