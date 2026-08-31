@@ -6,7 +6,7 @@ This repository provides official implementation of:
 
 [![Webpage](https://img.shields.io/badge/Webpage-SPOT--Bench-1f883d?logo=googlechrome&style=flat-square)](https://dibschat.github.io/SPOT-Bench)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.24317-b31b1b?logo=arxiv&style=flat-square)](https://arxiv.org/abs/2604.24317)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-Coming%20Soon-ffd21e?style=flat-square&logo=huggingface)](#)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-SPOT--Bench-ffd21e?style=flat-square&logo=huggingface)](#https://huggingface.co/datasets/cvml-nus/spot-bench)
 
 Release Plan
 
