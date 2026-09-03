@@ -21,7 +21,7 @@ def args_parser():
         type=str,
         required=True,
         metavar="{ABD,PNR,SQA,SPG,SI,UI}",
-        help="Tasks to run (one or more).",
+        help="Task to run.",
     )
     parser.add_argument(
         "--model",

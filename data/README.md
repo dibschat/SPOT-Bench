@@ -14,7 +14,7 @@ unzip data/videos.zip -d data && rm data/videos.zip
 
 ## Expected layout
 
-Everything in this repository defaults to `data/` for annotations and `data/videos/` for videos, so if the tree looks like this no path flags are needed:
+Everything in this repository defaults to `data/` for annotations and `data/videos/` for videos, so if the tree looks as follows, no path flags are needed:
 
 ```text
 data/

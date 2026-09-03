@@ -24,7 +24,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <link rel="stylesheet" href="stylesheet.css">
+    <!-- Bump ?v= whenever stylesheet.css changes, so browsers and GitHub Pages
+         don't serve a stale cached copy. -->
+    <link rel="stylesheet" href="stylesheet.css?v=11">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -122,39 +124,141 @@
         </div>
     </section>
 
-    <!-- Paper abstract -->
-    <section class="section hero" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
-        <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths" style="max-width: 90%; margin: 0 auto;">
-                    <h2 class="title is-3">Abstract</h2>
-                    <div class="content has-text-justified"
-                        style="background: #f8f8f8; border-left: 4px solid #363636; border-radius: 4px; padding: 1.25rem 1.5rem; font-size: 15px; hyphens: auto;">
-                        <p style="margin-bottom: 0;">
-                            Streaming video models should respond the moment an event unfolds, not after the moment has
-                            passed. Yet existing online VideoQA benchmarks remain largely retrospective. They pause the
-                            video at fixed timestamps, pose questions about current or past events, and score models
-                            only at those moments. This protocol leaves streaming predictions untested. To close this
-                            gap, we introduce SPOT-Bench, featuring multi-turn proactive queries that evaluate general
-                            streaming perception and assistive capabilities required by an always-on, real-time
-                            assistant. SPOT-Bench comes with Timeliness-F1, a consolidated metric that measures
-                            streaming predictions by their temporal precision and balanced coverage across the entire
-                            video. Our benchmark reveals: (i) offline models detect events reliably but spam
-                            predictions unprompted; (ii) post-training for silence reduces spamming but induces
-                            unresponsiveness; (iii) half of the streaming video expects no response, which we
-                            term dead-time &mdash; compute spent here does not affect response latency. These findings
-                            motivate AsynKV, a training-free streaming adaptation of offline models, that retains their
-                            event perception while improving their streaming behavior. AsynKV features a long-short term
-                            memory, utilized efficiently by scaling compute during dead-time. It serves as a strong
-                            baseline on SPOT-Bench, outperforming existing streaming models, and achieves
-                            state-of-the-art on retrospective benchmarks.
-                        </p>
+    <!-- Intro row: benchmark blurb + detection leaderboard (left), abstract (right) -->
+    <div id="intro-row">
+        <section class="section hero intro-section">
+            <div class="intro-outer">
+                <div class="intro-grid">
+
+                    <div class="intro-col">
+                        <div class="intro-head">
+                            <h2 class="title is-3">SPOT-Bench</h2>
+                        </div>
+
+                        <div class="intro-body">
+                            <p class="intro-lede">
+                                A fully <strong>proactive</strong> benchmark for <strong>streaming video models</strong>
+                                and <strong>interaction models</strong>.
+                            </p>
+                            <p class="intro-tldr">
+                                SPOT-Bench requires a streaming model to monitor a live video stream and proactively
+                                decide when to respond. Every prediction across the full video is evaluated using the
+                                Timeliness-F1 metric.
+                            </p>
+
+                            <div class="intro-card" id="Leaderboard">
+                                <div class="leaderboard-header">
+                                    <h3>Detection Leaderboard</h3>
+                                    <label class="leaderboard-sort">
+                                        T-F1@5 (%), sort by
+                                        <select id="leaderboard-sort" onchange="sortLeaderboard(this.value)">
+                                            <option value="overall" selected>Overall</option>
+                                            <option value="abd">ABD</option>
+                                            <option value="pnr">PNR</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="leaderboard-scroll">
+                                    <table class="leaderboard-table" id="leaderboard-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Model</th>
+                                                <th data-col="abd">ABD</th>
+                                                <th data-col="pnr">PNR</th>
+                                                <th data-col="overall">Overall</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- One <tr> per entry. data-* values drive the sort. -->
+                                            <tr data-abd="17.0" data-pnr="15.6" data-overall="16.3">
+                                                <td></td>
+                                                <td>JoyAI-VL-Interaction</td>
+                                                <td data-col="abd">17.0</td>
+                                                <td data-col="pnr">15.6</td>
+                                                <td data-col="overall">16.3</td>
+                                            </tr>
+                                            <tr data-abd="14.2" data-pnr="5.1" data-overall="9.7">
+                                                <td></td>
+                                                <td>MMDuet2</td>
+                                                <td data-col="abd">14.2</td>
+                                                <td data-col="pnr">5.1</td>
+                                                <td data-col="overall">9.7</td>
+                                            </tr>
+                                            <tr data-abd="10.0" data-pnr="8.1" data-overall="9.1">
+                                                <td></td>
+                                                <td>Qwen2.5-VL (Offline)</td>
+                                                <td data-col="abd">10.0</td>
+                                                <td data-col="pnr">8.1</td>
+                                                <td data-col="overall">9.1</td>
+                                            </tr>
+                                            <tr data-abd="10.7" data-pnr="7.2" data-overall="9.0">
+                                                <td></td>
+                                                <td>Qwen3-VL (Offline)</td>
+                                                <td data-col="abd">10.7</td>
+                                                <td data-col="pnr">7.2</td>
+                                                <td data-col="overall">9.0</td>
+                                            </tr>
+                                            <tr data-abd="3.9" data-pnr="2.5" data-overall="3.2">
+                                                <td></td>
+                                                <td>StreamingVLM</td>
+                                                <td data-col="abd">3.9</td>
+                                                <td data-col="pnr">2.5</td>
+                                                <td data-col="overall">3.2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="intro-col">
+                        <div class="intro-head">
+                            <h2 class="title is-3">Abstract</h2>
+                        </div>
+
+                        <div class="intro-body">
+                            <div class="intro-card abstract-card">
+                                <p>
+                                    Streaming video models should respond at the moment an event unfolds, not after the
+                                    moment
+                                    has passed. Yet existing online VideoQA benchmarks remain largely retrospective.
+                                    They pause
+                                    the video at fixed timestamps, pose questions about current or past events, and
+                                    score models
+                                    only at those moments. This protocol leaves streaming outputs untested. To close
+                                    this gap,
+                                    we introduce SPOT-Bench, featuring multi-turn proactive queries that evaluate
+                                    general
+                                    streaming perception required by an always-on, real-time assistant. SPOT-Bench comes
+                                    with
+                                    Timeliness-F1, a consolidated metric that measures streaming outputs by their
+                                    temporal
+                                    precision and balanced coverage across the entire video. Our benchmark reveals that
+                                    during
+                                    streaming inference: <em>(i)</em> MLLMs detect events reliably in a stream but spam
+                                    predictions unprompted; <em>(ii)</em> post-training MLLMs for silence reduces
+                                    spamming but
+                                    induces unresponsiveness; <em>(iii)</em> half of the streaming video expects no
+                                    response,
+                                    which we term dead-time &mdash; compute spent here does not affect response latency.
+                                    These
+                                    findings motivate Ctrl-SPOT, a training-free streaming controller for MLLMs, that
+                                    retains their
+                                    event perception while controlling their streaming outputs for balanced coverage.
+                                    This
+                                    establishes a strong baseline on SPOT-Bench.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- End paper abstract -->
+        </section>
+    </div>
+    <!-- End intro row -->
 
     <section class="section hero shared-eval-section">
         <div class="eval-canvas-outer">
@@ -427,6 +531,7 @@
             var querySectionTitle = document.getElementById('query-section-title');
             var streamingContent = document.getElementById('streaming-content');
             var retroContent = document.getElementById('retro-content');
+            var introRow = document.getElementById('intro-row');
 
             var icon = btn.querySelector('.hero-mode-icon');
             var label = shell.querySelector('.hero-mode-label');
@@ -440,6 +545,7 @@
                 querySectionTitle.textContent = 'Proactive QA';
                 streamingContent.style.display = '';
                 retroContent.style.display = 'none';
+                introRow.style.display = '';
             } else {
                 icon.textContent = '►︎';
                 label.textContent = 'Pause-Ask-Play';
@@ -449,6 +555,7 @@
                 querySectionTitle.textContent = 'Retrospective QA';
                 streamingContent.style.display = 'none';
                 retroContent.style.display = '';
+                introRow.style.display = 'none';
             }
 
             if (window.switchEvalMode) {
@@ -458,6 +565,32 @@
         }
 
         document.addEventListener('DOMContentLoaded', syncQueryVideo);
+
+        // Re-orders the leaderboard by the chosen task's T-F1@5, then renumbers
+        // the rank column and gives the trophy to whoever ends up on top.
+        function sortLeaderboard(col) {
+            var table = document.getElementById('leaderboard-table');
+            if (!table) return;
+            var body = table.tBodies[0];
+
+            Array.prototype.slice.call(body.rows)
+                .sort(function (a, b) {
+                    return parseFloat(b.dataset[col]) - parseFloat(a.dataset[col]);
+                })
+                .forEach(function (row, i) {
+                    row.classList.toggle('lb-leader', i === 0);
+                    row.cells[0].textContent = i === 0 ? '🏆' : (i + 1);
+                    body.appendChild(row);
+                });
+
+            table.querySelectorAll('[data-col]').forEach(function (cell) {
+                cell.classList.toggle('lb-active', cell.dataset.col === col);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            sortLeaderboard('overall');
+        });
 
         function switchBenchmark(benchmarkName, selectedButton) {
             document.querySelectorAll('.benchmark-tab').forEach(button => {

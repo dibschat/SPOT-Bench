@@ -794,3 +794,249 @@ body {
         aspect-ratio: 16 / 8;
     }
 }
+
+.intro-outer {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+.intro-section {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.intro-grid {
+    --lede-gap: 0rem;
+    --abstract-offset: calc(var(--lede-gap) + 1.9rem);
+    --leaderboard-height: 17.5rem;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 0 2.25rem;
+    align-items: stretch;
+}
+
+.intro-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.intro-body > .intro-card {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.intro-lede {
+    margin-top: var(--lede-gap);
+}
+
+.intro-col:nth-of-type(2) > .intro-body {
+    padding-top: var(--abstract-offset);
+}
+
+.intro-col {
+    display: contents;
+}
+
+.intro-col:nth-of-type(1) > .intro-head {
+    grid-area: 1 / 1;
+}
+
+.intro-col:nth-of-type(1) > .intro-body {
+    grid-area: 2 / 1;
+}
+
+.intro-col:nth-of-type(2) > .intro-head {
+    grid-area: 1 / 2;
+}
+
+.intro-col:nth-of-type(2) > .intro-body {
+    grid-area: 2 / 2;
+}
+
+.intro-grid .title {
+    margin-bottom: 0.6rem;
+    text-align: center;
+}
+
+.intro-lede {
+    color: #374151;
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.intro-tldr {
+    color: #4b5563;
+    font-size: 14.5px;
+    font-style: italic;
+    margin-bottom: 0.9rem;
+}
+
+.intro-card {
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    padding: 1.15rem 1.3rem;
+}
+
+.abstract-card {
+    font-size: 15px;
+    hyphens: auto;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.abstract-card p {
+    margin-bottom: 0;
+}
+
+.leaderboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+}
+
+.leaderboard-header h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #a5762d;
+    margin: 0;
+}
+
+.leaderboard-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 12.5px;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.leaderboard-sort select {
+    font-family: inherit;
+    font-size: 12.5px;
+    color: #374151;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+.leaderboard-sort select:focus {
+    outline: none;
+    border-color: #a5762d;
+}
+
+.leaderboard-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: var(--leaderboard-height, none);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #d7dde5 transparent;
+}
+
+.leaderboard-scroll::-webkit-scrollbar {
+    width: 7px;
+}
+
+.leaderboard-scroll::-webkit-scrollbar-thumb {
+    background: #d7dde5;
+    border-radius: 999px;
+}
+
+.leaderboard-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+}
+
+.leaderboard-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #ffffff;
+}
+
+.leaderboard-table th {
+    text-align: right;
+    font-weight: 600;
+    color: #4b5563;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+.leaderboard-table td {
+    text-align: right;
+    color: #374151;
+    padding: 0.42rem 0.5rem;
+    border-bottom: 1px solid #f1f3f6;
+    white-space: nowrap;
+}
+
+.leaderboard-table tr:last-child td {
+    border-bottom: none;
+}
+
+.leaderboard-table th:first-child,
+.leaderboard-table td:first-child {
+    text-align: center;
+    width: 2.2rem;
+}
+
+.leaderboard-table th:nth-child(2),
+.leaderboard-table td:nth-child(2) {
+    text-align: left;
+    white-space: normal;
+}
+
+.leaderboard-table th.lb-active,
+.leaderboard-table td.lb-active {
+    font-weight: 600;
+    color: #7a5620;
+    background: rgba(165, 118, 45, 0.05);
+}
+
+.leaderboard-table thead th.lb-active {
+    background: #faf8f4;
+}
+
+.leaderboard-table .lb-leader {
+    background: rgba(165, 118, 45, 0.08);
+}
+
+.leaderboard-table .lb-leader td {
+    color: #7a5620;
+    font-weight: 600;
+}
+
+.leaderboard-note {
+    margin: 0.75rem 0 0;
+    font-size: 12.5px;
+    color: #6b7280;
+}
+
+@media screen and (max-width: 900px) {
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .intro-col {
+        display: block;
+    }
+}
