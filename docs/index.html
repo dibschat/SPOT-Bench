@@ -89,7 +89,7 @@
                         <div class="columns is-centered" style="margin-bottom: 0em">
                             <div class="column is-max-desktop has-text-centered" style="padding: 0.5em">
                                 <h1 class="title is-4 publication-title" style="margin-bottom:0rem">
-                                    <strong>2026</strong>
+                                    <strong>NeurIPS E&amp;D 2026</strong>
                                 </h1>
                             </div>
                         </div>
@@ -171,6 +171,13 @@
                                         </thead>
                                         <tbody>
                                             <!-- One <tr> per entry. data-* values drive the sort. -->
+                                            <tr data-abd="22.2" data-pnr="19.5" data-overall="20.9">
+                                                <td></td>
+                                                <td>Ctrl-SPOT (baseline)</td>
+                                                <td data-col="abd">22.2</td>
+                                                <td data-col="pnr">19.5</td>
+                                                <td data-col="overall">20.9</td>
+                                            </tr>
                                             <tr data-abd="17.0" data-pnr="15.6" data-overall="16.3">
                                                 <td></td>
                                                 <td>JoyAI-VL-Interaction</td>
@@ -586,6 +593,11 @@
             table.querySelectorAll('[data-col]').forEach(function (cell) {
                 cell.classList.toggle('lb-active', cell.dataset.col === col);
             });
+
+            // Cap the scroll box at header + top-5 rows; the rest scroll.
+            var scroll = table.parentNode, last = body.rows[Math.min(5, body.rows.length) - 1];
+            scroll.style.maxHeight = (last.getBoundingClientRect().bottom - table.getBoundingClientRect().top) + 'px';
+            scroll.scrollTop = 0;
         }
 
         document.addEventListener('DOMContentLoaded', function () {
