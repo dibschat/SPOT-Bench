@@ -8,7 +8,7 @@ A fully **proactive** benchmark for **streaming video models** and **interaction
 
 This repository provides official implementation of:
 
-> **Don't Pause! Every prediction matters in a streaming video (NeurIPS E&D 2026)** \
+> **Don't Pause! Every prediction matters in a streaming video (NeurIPS 2026 (E&D Track))** \
 > Dibyadip Chatterjee, Zhanzhong Pang, Fadime Sener, Yale Song and Angela Yao
 
 ### ⚡ TL;DR
