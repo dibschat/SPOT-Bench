@@ -5,6 +5,7 @@ MODEL_REGISTRY = {
     "MMDuet2": ("model_wrappers.mmduet2", "MMDuet2"),
     "JoyAI_VL": ("model_wrappers.joyaivl", "JoyAI_VL"),
     "QwenVL": ("model_wrappers.qwen_vl", "QwenVL"),
+    "MiniCPM_o": ("model_wrappers.minicpmo", "MiniCPM_o"),
     # register your model here, e.g.:
     # "MyModel": ("model_wrappers.mymodel", "MyModel"),
 }
