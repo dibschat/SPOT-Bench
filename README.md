@@ -8,11 +8,12 @@ A fully **proactive** benchmark for **streaming video models** and **interaction
 
 This repository provides official implementation of:
 
-> **Don't Pause! Every prediction matters in a streaming video (NeurIPS 2026 (E&D Track))** \
+> **Don't Pause! Every prediction matters in a streaming video (NeurIPS 2026 E&D Track)**
 > Dibyadip Chatterjee, Zhanzhong Pang, Fadime Sener, Yale Song and Angela Yao
 
 ### ⚡ TL;DR
-SPOT-Bench requires a streaming model to monitor a live video stream and proactively decide when to respond. Every prediction across the full video is evaluated using the Timeliness-F1 metric.*
+
+SPOT-Bench requires a streaming model to monitor a live video stream and proactively decide when to respond. Every prediction across the full video is evaluated using the Timeliness-F1 metric.
 
 > [!NOTE]
 > **Detection** tasks (ABD, PNR) are released in full. For **Interaction** (SQA, SPG) and
@@ -20,12 +21,11 @@ SPOT-Bench requires a streaming model to monitor a live video stream and proacti
 > Stay tuned for updates on our [webpage](https://dibschat.github.io/SPOT-Bench/).
 > **The Detection Leaderboard is [live](https://dibschat.github.io/SPOT-Bench/#Leaderboard)! Submit a pull request or contact us at dibyadip@u.nus.edu with a link to your paper to be featured on the leaderboard.**
 
-
 ### Release Plan
 
 - [ ] Release challenge for Interaction and Intervention held-out test splits
 - [ ] Update paper on arXiv *(Coming Soon)*
-- [ ] Add Ctrl-SPOT (our updated baseline) and MiniCPM-o 4.5 *(Coming Soon)*
+- [X] Add Ctrl-SPOT (our updated baseline) and MiniCPM-o 4.5
 - [X] Add JoyAI-VL-Interaction to the baselines
 - [X] Release streaming inference code
 - [X] Release SPOT-Bench on HuggingFace
@@ -34,32 +34,32 @@ SPOT-Bench requires a streaming model to monitor a live video stream and proacti
 
 ## Tasks
 
-| Family       | Task          | Description                                                                    |
-| ------------ | ------------- | ------------------------------------------------------------------------------ |
-| Detection    | **ABD** | Action Boundary Detection: detect when a queried action **start**s or **end**        |
-| Detection    | **PNR** | Point-of-no-return Detection: detect the critical moment when a queried action takes effect    |
-| Interaction  | **SQA** | Streaming Question Answering: answer once sufficient visual evidence becomes available |
-| Interaction  | **SPG** | Streaming Procedural Guidance — provide the next step as the current step nears completion |
+| Family       | Task          | Description                                                                                                 |
+| ------------ | ------------- | ----------------------------------------------------------------------------------------------------------- |
+| Detection    | **ABD** | Action Boundary Detection: detect when a queried action**start**s or **end**                    |
+| Detection    | **PNR** | Point-of-no-return Detection: detect the critical moment when a queried action takes effect                 |
+| Interaction  | **SQA** | Streaming Question Answering: answer once sufficient visual evidence becomes available                      |
+| Interaction  | **SPG** | Streaming Procedural Guidance — provide the next step as the current step nears completion                 |
 | Intervention | **SI**  | Solicited Intervention — intervene when the user hesitates or makes an error while performing a known task |
-| Intervention | **UI**  | Unsolicited Intervention — detect imminent risks, intervene and warn the user |
+| Intervention | **UI**  | Unsolicited Intervention — detect imminent risks, intervene and warn the user                              |
 
 ## Benchmark Results
 
-Each cell reports **T-Score@5 / T-F1@5** (%).
+Each cell reports **T-Score@5 / T-F1@5** (%) at 1Hz evaluation frequency.
 
-| Model | #Frames | PT? | Model Size | ABD | PNR | SQA | SPG | SI | UI | Overall |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Qwen2.5-VL | 8 | X | 7B | 41.8/10.0 | 31.7/8.1 | 5.7/3.9 | 2.9/3.4 | 0.0/0.0 | 0.0/0.0 | 13.7/4.2 |
-| Qwen3-VL | 8 | X | 8B | 40.5/10.7 | 43.8/7.2 | 5.7/4.0 | 2.2/2.7 | 0.0/0.0 | 0.4/0.6 | 15.4/4.2 |
-| StreamingVLM | 2fps | ✅ | 7B | 4.8/3.9 | 4.4/2.5 | 22.8/1.2 | 12.9/1.3 | 13.2/0.7 | 14.8/4.4 | 12.2/2.3 |
-| MMDuet2 + KVflush | 2fps | ✅ | 3B | 13.9/14.2 | 4.1/5.1 | 19.5/5.9 | 1.6/2.0 | 0.0/0.0 | 20.0/8.4 | 9.9/5.9 |
-| MMDuet2 + StreamingVLM | 2fps | ✅ | 3B | 11.5/13.8 | 0.9/1.6 | 13.7/3.9 | 2.9/4.0 | 2.5/4.5 | 22.4/9.4 | 9.0/6.2 |
-| MiniCPM-o 4.5 | 2fps | ✅ | 9B | 11.5/15.4 | 12.1/14.3 | 7.8/7.2 | 3.1/5.2 | 0.0/0.0 | 19.4/6.7 | 9.0/8.1 |
-| JoyAI-VL-Interaction | 2fps | ✅ | 8B+4B | 15.3/17.0 | 32.2/15.6 | 21.2/5.9 | 8.1/6.9 | 5.0/2.3 | 22.8/10.2 | 17.4/9.7 |
+| Model                  | #Frames | PT? | Model Size | ABD       | PNR       | SQA      | SPG      | SI       | UI        | Overall  |
+| ---------------------- | ------- | --- | ---------- | --------- | --------- | -------- | -------- | -------- | --------- | -------- |
+| Qwen2.5-VL             | 8       | X   | 7B         | 41.8/10.0 | 31.7/8.1  | 5.7/3.9  | 2.9/3.4  | 0.0/0.0  | 0.0/0.0   | 13.7/4.2 |
+| Qwen3-VL               | 8       | X   | 8B         | 40.5/10.7 | 43.8/7.2  | 5.7/4.0  | 2.2/2.7  | 0.0/0.0  | 0.4/0.6   | 15.4/4.2 |
+| StreamingVLM           | 2fps    | ✅  | 7B         | 4.8/3.9   | 4.4/2.5   | 22.8/1.2 | 12.9/1.3 | 13.2/0.7 | 14.8/4.4  | 12.2/2.3 |
+| MMDuet2 + KVflush      | 2fps    | ✅  | 3B         | 13.9/14.2 | 4.1/5.1   | 19.5/5.9 | 1.6/2.0  | 0.0/0.0  | 20.0/8.4  | 9.9/5.9  |
+| MMDuet2 + StreamingVLM | 2fps    | ✅  | 3B         | 11.5/13.8 | 0.9/1.6   | 13.7/3.9 | 2.9/4.0  | 2.5/4.5  | 22.4/9.4  | 9.0/6.2  |
+| MiniCPM-o 4.5          | 2fps    | ✅  | 9B         | 11.5/15.4 | 12.1/14.3 | 7.8/7.2  | 3.1/5.2  | 0.0/0.0  | 19.4/6.7  | 9.0/8.1  |
+| JoyAI-VL-Interaction   | 2fps    | ✅  | 8B+4B      | 15.3/17.0 | 32.2/15.6 | 21.2/5.9 | 8.1/6.9  | 5.0/2.3  | 22.8/10.2 | 17.4/9.7 |
 
 ## Data
 
-SPOT-Bench videos and annotations are available on [HuggingFace](https://huggingface.co/datasets/cvml-nus/spot-bench). 
+SPOT-Bench videos and annotations are available on [HuggingFace](https://huggingface.co/datasets/cvml-nus/spot-bench).
 Place the annotations and the unzipped `videos` folder under `data/`. The directory structure should look like:
 
 ```text
@@ -106,7 +106,17 @@ pip install https://github.com/vllm-project/vllm/releases/download/v0.22.0/vllm-
 pip install pillow requests
 ```
 
-#### Scoring + Qwen-VL
+#### MiniCPM-o 4.5
+
+```bash
+conda create -n minicpmo python=3.10 -y
+conda activate minicpmo
+
+pip install torch==2.8.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+pip install transformers==4.51.0 accelerate decord librosa soundfile minicpmo-utils tqdm pillow
+```
+
+#### Scoring + Qwen-VL + Ctrl-SPOT
 
 ```bash
 conda create -n spotbench python=3.11 -y
@@ -122,7 +132,7 @@ See `scripts/` for instructions on running inference and scoring.
 
 ## Adding a model
 
-This repo is designed to be model-agnostic: annotations, evaluation metrics, and model wrappers are fully decoupled. 
+This repo is designed to be model-agnostic: annotations, evaluation metrics, and model wrappers are fully decoupled.
 Adding a new streaming model requires implementing only a single inference method.
 
 1. Subclass `ModelStreaming` in `model_wrappers/` and implement `inference()`, returning a
@@ -199,4 +209,4 @@ If you find our work useful, please cite:
 
 ## Acknowledgements
 
-Our evaluation code builds upon the well-organized repositories of [StreamingBench](https://github.com/thunlp-mt/streamingbench) and [OVO-Bench](https://github.com/joeleelyf/ovo-bench). We also thank the authors of [StreamingVLM](https://github.com/mit-han-lab/streaming-vlm), [MMDuet2](https://github.com/yellow-binary-tree/MMDuet2) and [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) for their excellent open-source releases.
+Our evaluation code builds upon the well-organized repositories of [StreamingBench](https://github.com/thunlp-mt/streamingbench) and [OVO-Bench](https://github.com/joeleelyf/ovo-bench). We also thank the authors of [StreamingVLM](https://github.com/mit-han-lab/streaming-vlm), [MMDuet2](https://github.com/yellow-binary-tree/MMDuet2), [MiniCPM-o](https://huggingface.co/openbmb/MiniCPM-o-4_5) and [JoyAI-VL-Interaction](https://github.com/jd-opensource/JoyAI-VL-Interaction) for their excellent open-source releases.

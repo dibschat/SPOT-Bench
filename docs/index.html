@@ -142,7 +142,7 @@
                             </p>
                             <p class="intro-tldr">
                                 SPOT-Bench requires a streaming model to monitor a live video stream and proactively
-                                decide when to respond. Every prediction across the full video is evaluated using the
+                                decide when to respond. Every prediction across the full video is evaluated at 1Hz using the
                                 Timeliness-F1 metric.
                             </p>
 
@@ -150,7 +150,7 @@
                                 <div class="leaderboard-header">
                                     <h3>Detection Leaderboard</h3>
                                     <label class="leaderboard-sort">
-                                        T-F1@5 (%), sort by
+                                        T-F1@5 (%) at 1Hz evaluation frequency, sort by
                                         <select id="leaderboard-sort" onchange="sortLeaderboard(this.value)">
                                             <option value="overall" selected>Overall</option>
                                             <option value="abd">ABD</option>

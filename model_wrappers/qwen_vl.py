@@ -33,6 +33,8 @@ class QwenVL(ModelStreaming):
     FRAME_SHORT_SIDE = 560
     PATCH_FACTOR = 28
     QUERY_ROUNDS = 4
+    QUERY_TTL_SECONDS = 120.0  # as in Ctrl-SPOT: timed queries expire; SPG/SI/UI are standing
+    TTL_TASKS = {"abd", "pnr", "sqa"}
 
     def __init__(self, args):
         super().__init__(stream_fps=2)
@@ -88,7 +90,7 @@ You are an online video reasoning system observing a live video stream.
 You continuously observe a live video stream, but you must only use information *visible so far* — never guess the future.
 
 At this moment, decide whether the described event in the question has already occurred in the video segment you have just seen.
-Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 3s).
+Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 4s).
 
 Be strict:
 - If the event has *not yet happened by the last frame*, respond exactly with **"no"**.
@@ -108,7 +110,7 @@ You are an online video reasoning system observing a live video stream.
 You continuously observe a live video stream, but you must only use information *visible so far* — never guess the future.
 
 At this moment, decide whether the described event in the question has already occurred in the video segment you have just seen.
-Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 3s).
+Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 4s).
 
 Definitions:
 {definitions}
@@ -131,7 +133,7 @@ You continuously observe a live video stream, but you must only use information 
 
 At this moment, decide whether the existing visual content, especially the most recent frames near the end of this segment,
 provides enough information to confidently answer the question.
-Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 3s).
+Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 4s).
 
 Be strict:
 - If there is not enough evidence yet in the last frame, respond exactly with **"no"**.
@@ -156,7 +158,7 @@ The task and its steps, in order:
 Decide, from these frames alone, whether a step has just been completed.
 
 Rules:
-- Use only the most recent frames (≈ last 3s), and answer for the last frame only.
+- Use only the most recent frames (≈ last 4s), and answer for the last frame only.
 - If these frames show one of the listed steps being completed, reply with the **next**
   step in the list, copied as written.
 - If the video has only just begun and no step has started yet, reply with step 1.
@@ -175,7 +177,7 @@ You know the task and its ordered actions:
 {question}
 
 Your goal is to decide whether you should **intervene now** to help the person proceed correctly.
-Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 3s).
+Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 4s).
 
 Guidelines:
 - If the person is **progressing normally by the last frame** or **has just completed a step successfully**, respond exactly with **"no"**.
@@ -193,7 +195,7 @@ You are an online visual assistant observing a live egocentric video feed from a
 You continuously observe a live video stream, but you must only use information *visible so far* — never guess the future.
 
 Your goal is to decide whether you should **intervene now** with a short, helpful spoken warning or guidance.
-Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 3s).
+Answer **for the last frame only**, giving strongest weight to the **latest frames** (≈ last 4s).
 
 Guidelines:
 - If **no immediate risk or obstacle is visible by the last frame**, respond exactly with **"no"**.
@@ -427,9 +429,7 @@ Your response should sound like a real-time verbal cue.
 
     @staticmethod
     def _resize_frame(frame_rgb: np.ndarray, target_hw: tuple[int, int]) -> np.ndarray:
-        """Resize here, not in the processor: frames reach `process_vision_info` as
-        base64 PNGs, so a 4K frame costs 199 MB of arrays and 266 MB of base64 per
-        tick against 14 MB / 18 MB once resized."""
+        """Resize here, not in the processor."""
         height, width = target_hw
         if frame_rgb.shape[0] == height and frame_rgb.shape[1] == width:
             return frame_rgb
@@ -467,6 +467,9 @@ Your response should sound like a real-time verbal cue.
             videos=video_inputs,
             padding=True,
             return_tensors="pt",
+            # Qwen3-VL: keep every window frame and stamp it at the true 2 FPS (window-relative).
+            do_sample_frames=False,
+            video_metadata={"total_num_frames": len(frames), "fps": self.stream_fps, "frames_indices": list(range(len(frames)))},
         ).to(self.device)
 
         is_detection = (self._active_task or "").lower() in self.DETECTION_TASKS
@@ -538,6 +541,8 @@ Your response should sound like a real-time verbal cue.
                     question=item["question"],
                     turn_id=item["turn_id"],
                 )
+            if task in self.TTL_TASKS:
+                active = deque((q for q in active if tick_time - q["ask_time"] < self.QUERY_TTL_SECONDS), maxlen=self.QUERY_ROUNDS)
 
             if (tick + 1) % decision_every != 0:
                 continue

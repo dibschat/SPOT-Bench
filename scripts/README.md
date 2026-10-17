@@ -31,6 +31,22 @@ conda activate spotbench
 python inference.py --task PNR --model QwenVL --qwen_version 3 --result_dir results/QwenVL_3
 ```
 
+### Ctrl-SPOT
+
+```bash
+conda activate spotbench
+
+python inference.py --task PNR --model CtrlSPOT --result_dir results/CtrlSPOT
+```
+
+### MiniCPM-o
+
+```bash
+conda activate minicpmo
+
+python inference.py --task PNR --model MiniCPM_o --result_dir results/MiniCPM_o
+```
+
 ### JoyAI-VL
 
 Start the service once using the `joyai` environment from the JoyAI-VL-Interaction repository:
