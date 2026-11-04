@@ -56,6 +56,13 @@ Each cell reports **T-Score@5 / T-F1@5** (%) at 1Hz evaluation frequency.
 | MMDuet2 + StreamingVLM | 2fps    | ✅  | 3B         | 11.5/13.8 | 0.9/1.6   | 13.7/3.9 | 2.9/4.0  | 2.5/4.5  | 22.4/9.4  | 9.0/6.2  |
 | MiniCPM-o 4.5          | 2fps    | ✅  | 9B         | 11.5/15.4 | 12.1/14.3 | 7.8/7.2  | 3.1/5.2  | 0.0/0.0  | 19.4/6.7  | 9.0/8.1  |
 | JoyAI-VL-Interaction   | 2fps    | ✅  | 8B+4B      | 15.3/17.0 | 32.2/15.6 | 21.2/5.9 | 8.1/6.9  | 5.0/2.3  | 22.8/10.2 | 17.4/9.7 |
+| Mage-VL                | 8       | X   | 4B         | 41.0/10.9 | 70.1/10.2 | –        | –        | –        | –         | –        |
+| Mage-VL (codec)        | ≤64     | X   | 4B         | 42.1/10.2 | 72.2/10.1 | –        | –        | –        | –         | –        |
+| Mage-VL + edge-trigger | 8       | X   | 4B         | 30.7/28.6 | 32.8/20.5 | –        | –        | –        | –         | –        |
+
+Mage-VL rows: detection tasks only. *codec* is Mage-VL's codec-native input (up to 64 frames of the last 4 s in
+1/4 of the visual tokens); *edge-trigger* is a causal rule on the model's outputs that drops repeated replies, a
+controller like Ctrl-SPOT rather than a plain model. Setup, dev/test protocol and caveats: [docs/mage_vl.md](docs/mage_vl.md).
 
 ## Data
 
@@ -126,6 +133,20 @@ pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https
 pip install -U setuptools wheel packaging ninja
 pip install flash-attn==2.8.3 --no-build-isolation
 pip install "transformers>=4.57,<5" accelerate qwen-vl-utils decord tqdm pillow requests openai
+```
+
+#### Mage-VL
+
+Mage-VL needs `transformers>=5.7`, so it gets its own environment. The codec input also needs `ffmpeg` and
+`cv-preinfer` from [`codec-video-prep`](https://pypi.org/project/codec-video-prep/) (set `CV_PREINFER_BIN` if it is
+not on `PATH`).
+
+```bash
+conda create -n magevl python=3.12 -y
+conda activate magevl
+
+pip install torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cu128
+pip install "transformers==5.7.0" accelerate decord qwen-vl-utils tqdm pillow opencv-python-headless
 ```
 
 See `scripts/` for instructions on running inference and scoring.

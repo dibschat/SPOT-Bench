@@ -39,6 +39,23 @@ conda activate spotbench
 python inference.py --task PNR --model CtrlSPOT --result_dir results/CtrlSPOT
 ```
 
+### Mage-VL
+
+```bash
+conda activate magevl
+
+# QwenVL protocol (4 s window, 8 frames)
+python inference.py --task PNR --model MageVL --result_dir results/MageVL
+
+# codec-native input: causal H.264 copies first, then the window W (s) and canvas count
+bash scripts/transcode_causal.sh ABD PNR
+MAGE_CODEC_WINDOW=4 MAGE_CODEC_CANVAS=8 \
+  python inference.py --task PNR --model MageVLCodec --result_dir results/MageVLCodec_w4
+```
+
+`scripts/run_sharded.sh` runs any model with one shard per GPU and merges the shards:
+`MODEL=MageVL bash scripts/run_sharded.sh ABD PNR`.
+
 ### MiniCPM-o
 
 ```bash
@@ -92,4 +109,16 @@ export OPENAI_API_KEY=...   # SQA, SPG, SI, UI are judged by an LLM
 python score.py --tasks ABD PNR SQA SPG SI UI --model StreamingVLM \
   --result_dir results/StreamingVLM
 
+```
+
+## Edge-trigger controller
+
+`scripts/controller.py` drops replies that repeat the model's previous output for the same turn. It is causal
+and works on any model's trace. `tune` selects the cooldown on a fixed 20% dev split and reports the held-out
+80% and the full set; `apply` writes a controlled trace to score as usual. See [docs/mage_vl.md](../docs/mage_vl.md).
+
+```bash
+python scripts/controller.py tune  --task PNR --model MageVL --result_dir results/MageVL
+python scripts/controller.py apply --task PNR --model MageVL --result_dir results/MageVL --out_dir results/MageVL_ctrl
+python score.py --tasks PNR --model MageVL --result_dir results/MageVL_ctrl
 ```

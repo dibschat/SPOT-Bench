@@ -13,7 +13,12 @@ import decord
 import numpy as np
 from PIL import Image
 from qwen_vl_utils import process_vision_info
-from transformers import AutoModelForVision2Seq, AutoProcessor
+from transformers import AutoProcessor
+
+try:
+    from transformers import AutoModelForVision2Seq
+except ImportError:  # removed in transformers 5 (needed by Mage-VL)
+    from transformers import AutoModelForImageTextToText as AutoModelForVision2Seq
 
 from .base_model import ModelStreaming
 from .utils import GenerationTimer, frames_to_base64_images
