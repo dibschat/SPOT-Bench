@@ -179,6 +179,7 @@ class MageVLCodec(MageVL):
                 )
 
         decisions = [d for _, _, d in steps if d is not None]
+        last_reply: Dict[str, str] = {}
         pending: deque = deque()
         submitted = 0
         for response_time, _, active_now in decisions:
@@ -198,6 +199,10 @@ class MageVLCodec(MageVL):
             response = self._generate(inputs)
             latency_s = timer.finish()
             for turn_id, value in self._split_responses(response, task, active_now):
+                repeat = last_reply.get(turn_id) == value.strip().lower()
+                last_reply[turn_id] = value.strip().lower()
+                if self.no_repeat and repeat:
+                    continue
                 self._append_response_event(
                     events, t=response_time, value=value, turn_id=turn_id, latency_s=latency_s
                 )

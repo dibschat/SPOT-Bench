@@ -49,6 +49,8 @@ class QwenVL(ModelStreaming):
             raise ValueError("QwenVL expects the 2-FPS streaming input rate")
 
         self.version = self._normalize_version(getattr(args, "qwen_version", None))
+        # --no_repeat: a turn only gets a new reply when it differs from the previous one
+        self.no_repeat = bool(getattr(args, "no_repeat", False))
         self.window_frames = int(round(self.STREAM_WINDOW_SECONDS * self.stream_fps))
         self._model_init()
 
@@ -529,6 +531,7 @@ Your response should sound like a real-time verbal cue.
         target_hw: tuple[int, int] | None = None
         active: deque[Dict[str, Any]] = deque(maxlen=self.QUERY_ROUNDS)
         events: List[Dict[str, Any]] = []
+        last_reply: Dict[str, str] = {}
 
         for tick in range(num_ticks):
             tick_time = tick * step
@@ -569,6 +572,10 @@ Your response should sound like a real-time verbal cue.
 
             response_time = min(duration, (tick + 1) * step)
             for turn_id, value in self._split_responses(response, task, active_now):
+                repeat = last_reply.get(turn_id) == value.strip().lower()
+                last_reply[turn_id] = value.strip().lower()
+                if self.no_repeat and repeat:
+                    continue
                 self._append_response_event(
                     events,
                     t=response_time,
