@@ -9,11 +9,14 @@ T-F1@5 (%) at 1 Hz.
 
 | Harness | Model | ABD | PNR | Overall |
 | --- | --- | --- | --- | --- |
-| Ctrl-SPOT | Qwen2.5-VL-7B (current #1) | 22.2 | 19.5 | 20.9 |
-| Ctrl-SPOT | Mage-VL | **33.4** | 8.5 | 21.0 |
+| Ctrl-SPOT | Ctrl-SPOT baseline (current #1) | 22.2 | 19.5 | 20.9 |
+| Ctrl-SPOT | **Mage-VL** | **33.4** | 8.5 | **21.0** |
 | QwenVL | Mage-VL | 10.9 | 10.2 | 10.6 |
-| QwenVL `--no_repeat` | Mage-VL | 27.8 | **20.5** | **24.2** |
-| QwenVL `--no_repeat` | Mage-VL codec (1/4 visual tokens) | 25.9 | 19.2 | 22.6 |
+| QwenVL + `--no_repeat` | **Mage-VL** | 27.8 | **20.5** | **24.2** |
+| QwenVL + `--no_repeat` | Mage-VL codec (1/4 visual tokens) | 25.9 | 19.2 | 22.6 |
+
+*Harness* is the existing inference wrapper in this repo: `model_wrappers/ctrl_spot.py` (Ctrl-SPOT) or
+`model_wrappers/qwen_vl.py` (the offline QwenVL baseline). Only the backbone is swapped.
 
 ## What changed
 
