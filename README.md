@@ -57,12 +57,13 @@ Each cell reports **T-Score@5 / T-F1@5** (%) at 1Hz evaluation frequency.
 | MiniCPM-o 4.5          | 2fps    | ✅  | 9B         | 11.5/15.4 | 12.1/14.3 | 7.8/7.2  | 3.1/5.2  | 0.0/0.0  | 19.4/6.7  | 9.0/8.1  |
 | JoyAI-VL-Interaction   | 2fps    | ✅  | 8B+4B      | 15.3/17.0 | 32.2/15.6 | 21.2/5.9 | 8.1/6.9  | 5.0/2.3  | 22.8/10.2 | 17.4/9.7 |
 | Mage-VL                | 8       | X   | 4B         | 41.0/10.9 | 70.1/10.2 | –        | –        | –        | –         | –        |
-| Mage-VL (codec)        | ≤64     | X   | 4B         | 42.1/10.2 | 72.2/10.1 | –        | –        | –        | –         | –        |
 | Mage-VL + edge-trigger | 8       | X   | 4B         | 30.7/28.6 | 32.8/20.5 | –        | –        | –        | –         | –        |
+| Mage-VL (codec) + edge-trigger | ≤64 | X | 4B       | 31.0/26.8 | 34.9/19.2 | –        | –        | –        | –         | –        |
 
-Mage-VL rows: detection tasks only. *codec* is Mage-VL's codec-native input (up to 64 frames of the last 4 s in
-1/4 of the visual tokens); *edge-trigger* is a causal rule on the model's outputs that drops repeated replies, a
-controller like Ctrl-SPOT rather than a plain model. Setup, dev/test protocol and caveats: [docs/mage_vl.md](docs/mage_vl.md).
+Mage-VL rows: detection tasks only. *Mage-VL* uses the Qwen-VL offline harness unchanged. *edge-trigger* adds a
+causal rule that drops replies repeating the model's previous output, a controller like Ctrl-SPOT rather than a
+plain model. *codec* replaces the 8 frames with Mage-VL's codec-native input (up to 64 frames in 1/4 of the visual
+tokens). Before/after, protocol and caveats: [docs/mage_vl.md](docs/mage_vl.md).
 
 ## Data
 
