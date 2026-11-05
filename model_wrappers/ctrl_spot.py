@@ -152,6 +152,8 @@ class CtrlSPOT(ModelStreaming):
         self.decision_every = max(1, self.STREAM_FPS // self.DECISION_HZ)
         self.args = args
         self.model_path = getattr(args, "model_path", None) or DEFAULT_MODEL_PATH
+        # --no_repeat: do not write a reply identical to the previous output for the same question
+        self.no_repeat = bool(getattr(args, "no_repeat", False))
         self._model_init()
         self._system_cache: Dict[str, Segment] = {}
 
@@ -484,6 +486,7 @@ class CtrlSPOT(ModelStreaming):
 
         by_tick = self._schedule(turns)
         self._reset_stream()
+        prev_replies: Dict[str, set] = {}  # previous decision's replies per question; empty = "no"
         events: List[Dict[str, Any]] = []
         num_ticks = max(1, int(math.ceil(duration * self.stream_fps)))
         W = int(round(self.SUMMARY_WINDOW_SECONDS * self.stream_fps))
@@ -524,7 +527,11 @@ class CtrlSPOT(ModelStreaming):
                 del out, cache, captured
                 if text != "no":
                     verbose_log(f"[CtrlSPOT] t={t:.1f} -> {text!r}")
-                for query, value in self._parse_replies(text):
+                replies = self._parse_replies(text)
+                for query, value in replies:
+                    if self.no_repeat and value.lower() in prev_replies.get(query.tag, set()):
+                        self._set_answer(query, value, t)  # the model's memory is unchanged
+                        continue
                     events.append({
                         "time": round(t_resp, 3),
                         "type": "response",
@@ -533,6 +540,7 @@ class CtrlSPOT(ModelStreaming):
                         "latency": round(float(latency), 4),
                     })
                     self._set_answer(query, value, t)
+                prev_replies = {q.tag: {v.lower() for qq, v in replies if qq is q} for q in self.active}
             else:
                 del out, cache, captured
 

@@ -45,7 +45,7 @@ python inference.py --task PNR --model CtrlSPOT --result_dir results/CtrlSPOT
 conda activate magevl
 
 # Ctrl-SPOT or QwenVL harness with Mage-VL; --no_repeat withholds repeated replies
-python inference.py --task PNR --model CtrlSPOTMageVL --result_dir results/CtrlSPOTMageVL
+python inference.py --task PNR --model CtrlSPOTMageVL --no_repeat --result_dir results/CtrlSPOTMageVL
 python inference.py --task PNR --model MageVL --no_repeat --result_dir results/MageVL
 
 # codec-native input: causal H.264 copies first, then the window W (s) and canvas count

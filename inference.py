@@ -86,7 +86,7 @@ def args_parser():
     parser.add_argument(
         "--no_repeat",
         action="store_true",
-        help="QwenVL-based models: do not write a reply identical to the previous reply to the same question.",
+        help="QwenVL- and CtrlSPOT-based models: do not write a reply identical to the previous output for the same question.",
     )
 
     args = parser.parse_args()
