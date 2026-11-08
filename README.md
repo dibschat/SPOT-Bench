@@ -23,8 +23,8 @@ SPOT-Bench requires a streaming model to monitor a live video stream and proacti
 
 ### Release Plan
 
-- [ ] Release challenge for Interaction and Intervention held-out test splits
-- [ ] Update paper on arXiv *(Coming Soon)*
+- [ ] Release challenge for Interaction and Intervention held-out test splits (will be declared in January, stay tuned!)
+- [X] Update paper on arXiv to NeurIPS camera ready
 - [X] Add Ctrl-SPOT (our updated baseline) and MiniCPM-o 4.5
 - [X] Add JoyAI-VL-Interaction to the baselines
 - [X] Release streaming inference code
