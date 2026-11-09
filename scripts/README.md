@@ -39,6 +39,24 @@ conda activate spotbench
 python inference.py --task PNR --model CtrlSPOT --result_dir results/CtrlSPOT
 ```
 
+### Mage-VL
+
+```bash
+conda activate magevl
+
+# Ctrl-SPOT or QwenVL harness with Mage-VL; --no_repeat withholds repeated replies
+python inference.py --task PNR --model CtrlSPOTMageVL --no_repeat --result_dir results/CtrlSPOTMageVL
+python inference.py --task PNR --model MageVL --no_repeat --result_dir results/MageVL
+
+# codec-native input: causal H.264 copies first, then the window W (s) and canvas count
+bash scripts/transcode_causal.sh ABD PNR
+MAGE_CODEC_WINDOW=4 MAGE_CODEC_CANVAS=8 \
+  python inference.py --task PNR --model MageVLCodec --no_repeat --result_dir results/MageVLCodec_w4
+```
+
+`scripts/run_sharded.sh` runs any model with one shard per GPU and merges the shards:
+`MODEL=MageVL ARGS=--no_repeat bash scripts/run_sharded.sh ABD PNR`.
+
 ### MiniCPM-o
 
 ```bash

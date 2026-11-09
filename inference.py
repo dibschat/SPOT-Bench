@@ -83,6 +83,12 @@ def args_parser():
         help=f"QwenVL version to run offline sliding window baseline (default: {QWEN_DEFAULT_VERSION}).",
     )
 
+    parser.add_argument(
+        "--no_repeat",
+        action="store_true",
+        help="QwenVL- and CtrlSPOT-based models: do not write a reply identical to the previous output for the same question.",
+    )
+
     args = parser.parse_args()
 
     args.task = args.task.upper()
@@ -113,6 +119,7 @@ def build_model(args):
         model_args.kv_mode = args.kv_mode or MMDUET2_DEFAULT_KV_MODE
     if args.model == "QwenVL":
         model_args.qwen_version = args.qwen_version or QWEN_DEFAULT_VERSION
+    model_args.no_repeat = args.no_repeat
 
     return load_model(args.model, model_args)
 

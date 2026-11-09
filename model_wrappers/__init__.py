@@ -7,6 +7,9 @@ MODEL_REGISTRY = {
     "QwenVL": ("model_wrappers.qwen_vl", "QwenVL"),
     "CtrlSPOT": ("model_wrappers.ctrl_spot", "CtrlSPOT"),
     "MiniCPM_o": ("model_wrappers.minicpmo", "MiniCPM_o"),
+    "MageVL": ("model_wrappers.mage_vl", "MageVL"),
+    "MageVLCodec": ("model_wrappers.mage_vl", "MageVLCodec"),
+    "CtrlSPOTMageVL": ("model_wrappers.ctrl_spot_mage", "CtrlSPOTMageVL"),
     # register your model here, e.g.:
     # "MyModel": ("model_wrappers.mymodel", "MyModel"),
 }
